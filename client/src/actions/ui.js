@@ -1,5 +1,9 @@
 import { types } from "../types/types";
 
-export const uiCloseModal = () => ({ type: types.uiCloseModal})
+export const uiOpenModalAddLetter = () => ({ type: types.uiAddLetterOpenModal})
+export const uiCloseModalAddLetter = () => ({ type: types.uiAddLetterCloseModal})
 
-export const uiOpenModal = () => ({ type: types.uiOpenModal})
+
+export const uiOpenModalShowLetter = () => ({ type: types.uiOpenModalShowLetter})
+export const uiCloseModalShowLetter = () => ({ type: types.uiCloseModalShowLetter})
+

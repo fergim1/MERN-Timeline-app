@@ -1,11 +1,14 @@
 import React, { useState }  from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
+import moment from 'moment';
+
 import "react-datetime/css/react-datetime.css";
 
-import { uiCloseModal } from "../../actions/ui";
+import { uiCloseModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import "./styleModal.css";
+import { startAddLetter } from "../../../actions/timeline";
 
 
 
@@ -22,59 +25,62 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const initialEvent = {
+const initialMemory = {
 
   id: 132465,
-  date: new Date(),
+  date: moment().format("DD - MMM - YYYY"),
   title: '',
-  note: 'Aca iria una nota',
-  img: null,
+  message: '',
+  letter: '',
+  images: null,
   video: null,
-  author: 'Fernando' 
+  author: '' 
 }
 
-export const ModalNote = () => {
+export const ModalAddLetter = () => {
 
   const dispatch = useDispatch()
 
-  const { modalOpen } = useSelector(state => state.ui)
+  const { modalAddLetterOpen } = useSelector(state => state.ui)
   
-  const [formValues, setFormValues] = useState( initialEvent )
+  const [formValues, setFormValues] = useState( initialMemory )
 
-  const { date, title, note } = formValues;
+  const { date, title, message, letter } = formValues;
 
 
 const closeModal = () => {
-  dispatch( uiCloseModal() )
+  dispatch( uiCloseModalAddLetter() )
 };
 
-  const handleSubmitForm = ( e ) => {
-        e.preventDefault();            
-        console.log(formValues)
-        closeModal()      
-  }
 
-  const handleDateChange = ( e ) => {
-
-    setFormValues ( {
-      ...formValues,
-        date : e._d
+const handleDateChange = ( e ) => {
+   const fecha = moment(e).format("DD - MMM - YYYY")
+  
+  setFormValues ( {
+    ...formValues,
+    date : fecha
   })
+  
+}
 
-  }
+const handleInputChange = ( { target }) => {
+  setFormValues ( {
+    ...formValues,
+    [target.name] : target.value
+  })
+}
 
-  const handleInputChange = ( { target }) => {
-    setFormValues ( {
-        ...formValues,
-        [target.name] : target.value
-    })
-  }
-
+const handleSubmitForm = ( e ) => {
+      e.preventDefault(); 
+      dispatch( startAddLetter ( formValues ) )           
+      setFormValues(initialMemory)
+      closeModal()      
+}
 
 
   return (
     <Modal
-      isOpen={modalOpen}
+      isOpen={modalAddLetterOpen}
       onRequestClose={closeModal}
       style={customStyles}
       className="modal"
@@ -82,7 +88,7 @@ const closeModal = () => {
       closeTimeoutMS={200}
     >
         <div className='encabezado'>
-            <h3> Nota</h3>
+            <h3> Carta </h3>
             <i className="fas fa-times-circle fa-lg" onClick= {closeModal} ></i>
         </div>
         <hr />
@@ -93,9 +99,7 @@ const closeModal = () => {
             onSubmit= { handleSubmitForm }
       >
         <div className="form-group">
-            {/* <label>Fecha</label> */}
                 <Datetime
-                    // initialValue={ date }
                     dateFormat="DD-MM-YYYY"
                     timeFormat={false}
                     onChange={ handleDateChange }
@@ -122,14 +126,27 @@ const closeModal = () => {
             <textarea
                 type="text"
                 className="form-control"
-                placeholder="Notas"
-                rows="8"
-                name="note"
-                value= { note }
+                placeholder="Mensaje.."
+                rows="2"
+                name="message"
+                value= { message }
                 onChange= { handleInputChange }
             ></textarea>
-
         </div>
+
+
+        <div className="form-group">
+            <textarea
+                type="text"
+                className="form-control"
+                placeholder="Carta..."
+                rows="8"
+                name="letter"
+                value= { letter }
+                onChange= { handleInputChange }
+            ></textarea>
+        </div>
+
         <div className='form-group'>
             <button type="submit" className="btn btn-primary btn-block">
             Guardar 

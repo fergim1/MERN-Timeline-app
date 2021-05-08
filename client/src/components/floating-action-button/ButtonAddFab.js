@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
-import { uiOpenModal } from "../../actions/ui";
+import { uiOpenModalAddLetter } from "../../actions/ui";
 
 
 export const ButtonAddFab = () => {
@@ -23,8 +23,8 @@ export const ButtonAddFab = () => {
         console.log('Click')
     }
 
-    const handleModalNote = () => {
-      dispatch( uiOpenModal())
+    const handleModalLetter = () => {
+      dispatch( uiOpenModalAddLetter())
     }
 
 
@@ -41,15 +41,16 @@ export const ButtonAddFab = () => {
             // onClick={handleClick}
       >
         <Action 
-            text="Note" 
-            onClick={ handleModalNote }
+            text="Carta" 
+            onClick={ handleModalLetter }
             style={styleButton}
         >
-               <i className="fas fa-clipboard fa-lg"></i>
+              <i className="fas fa-envelope fa-lg"></i>
+
         </Action>
 
         <Action 
-            text="Image" 
+            text="Fotos" 
             onClick={handleClick}
             style={styleButton}
         >

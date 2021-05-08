@@ -1,18 +1,30 @@
 import React from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+
+import { FaShoppingBag } from 'react-icons/fa';
+import { useDispatch, useSelector } from "react-redux";
+import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
+import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
+
 import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css'
-import { FaShoppingBag } from 'react-icons/fa';
-import { useSelector } from "react-redux";
-import { ButtonAddFab } from "../add/ButtonAddFab";
-import { ModalNote } from "../add/ModalNote";
+import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
+import { uiOpenModalShowLetter } from "../../actions/ui";
+import { timelineStartActiveMemory } from "../../actions/timeline";
 
 
 
 
 export const TimelineScreen = () => {
 
+    const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
+
+
+    const handleModalLetter = (memory) =>{
+      dispatch ( uiOpenModalShowLetter() )
+      dispatch ( timelineStartActiveMemory( memory ) )
+    }
 
   return (
     <div>
@@ -20,24 +32,47 @@ export const TimelineScreen = () => {
             className='timeline'
       >
           {
-              memories.map( (publication) => (
+              memories.map( (memory) => (
                     <VerticalTimelineElement
-                            key={publication.id}
+                            key={memory.id}
                             className="vertical-timeline-element--work"
                             contentStyle={{ background: "#FFFFFF", color: "#7A7A7A" }}
                             contentArrowStyle={{ borderRight: "20px solid  #FFFFFF" }}
-                            date={ publication.date }
+                            date={ memory.date }
                             iconStyle={{ background: "#3312AB", color: "#fff" }}
                             icon={< FaShoppingBag />}
                     >
                         
                     <h3 className="vertical-timeline-element-title">
-                            { publication.title }
+                            { memory.title }
                     </h3>
 
                     <p>
-                            { publication.note }
+                            { memory.message }
                     </p>
+
+                    <div style={{marginTop: '10px'}}>
+
+                        {
+                          (memory.letter) && 
+                          <i 
+                            className="fas fa-envelope fa-lg"
+                            onClick= { () => handleModalLetter (memory) }
+                          
+                          ></i>
+                        }
+
+                        {
+                          (memory.images) && 
+                          <i className="fas fa-image fa-lg"></i>
+                        }
+
+                        {
+                          (memory.video) && 
+                          <i className="fas fa-video fa-lg"></i>
+                        } 
+
+                    </div>
 
                     </VerticalTimelineElement>
 
@@ -54,7 +89,8 @@ export const TimelineScreen = () => {
       </VerticalTimeline>
       
       <ButtonAddFab/>
-      <ModalNote/>
+      <ModalAddLetter/>
+      <ModalShowLetter/>
     </div>
   );
 };
