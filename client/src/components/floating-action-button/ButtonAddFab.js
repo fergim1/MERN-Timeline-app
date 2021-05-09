@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
-import { uiOpenModalAddLetter } from "../../actions/ui";
+import { uiOpenModalAddLetter, uiOpenModalAddPhotos } from "../../actions/ui";
 
 
 export const ButtonAddFab = () => {
@@ -27,6 +27,9 @@ export const ButtonAddFab = () => {
       dispatch( uiOpenModalAddLetter())
     }
 
+    const handleModalPhotos = () => {
+      dispatch ( uiOpenModalAddPhotos() )
+    }
 
   return (
     <div>
@@ -51,7 +54,7 @@ export const ButtonAddFab = () => {
 
         <Action 
             text="Fotos" 
-            onClick={handleClick}
+            onClick={ handleModalPhotos }
             style={styleButton}
         >
                 <i className="fas fa-image fa-lg"></i>

@@ -9,8 +9,10 @@ import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter"
 import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css'
 import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
-import { uiOpenModalShowLetter } from "../../actions/ui";
+import { uiOpenModalShowLetter, uiOpenModalShowPhotos } from "../../actions/ui";
 import { timelineStartActiveMemory } from "../../actions/timeline";
+import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
+import { ModalShowPhotos } from '../ui/photos/ModalShowPhotos'
 
 
 
@@ -25,6 +27,12 @@ export const TimelineScreen = () => {
       dispatch ( uiOpenModalShowLetter() )
       dispatch ( timelineStartActiveMemory( memory ) )
     }
+
+    const handleModalPhotos = (memory) =>{
+      dispatch ( uiOpenModalShowPhotos () )
+      dispatch ( timelineStartActiveMemory( memory ) )
+    }
+
 
   return (
     <div>
@@ -64,7 +72,10 @@ export const TimelineScreen = () => {
 
                         {
                           (memory.images) && 
-                          <i className="fas fa-image fa-lg"></i>
+                          <i 
+                          className="fas fa-image fa-lg"
+                          onClick= { () => handleModalPhotos (memory) }
+                          ></i>
                         }
 
                         {
@@ -91,6 +102,8 @@ export const TimelineScreen = () => {
       <ButtonAddFab/>
       <ModalAddLetter/>
       <ModalShowLetter/>
+      <ModalAddPhotos/>
+      <ModalShowPhotos/>
     </div>
   );
 };

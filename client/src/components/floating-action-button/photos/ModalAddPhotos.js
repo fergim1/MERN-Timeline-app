@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import "react-datetime/css/react-datetime.css";
 
-import { uiCloseModalAddLetter } from "../../../actions/ui";
+import {  uiCloseModalAddPhotos } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import "./styleModal.css";
 import { startAddLetter } from "../../../actions/timeline";
@@ -31,25 +31,25 @@ const initialMemory = {
   date: moment().format("DD - MMM - YYYY"),
   title: '',
   message: '',
-  letter: '',
+  letter: null,
   images: null,
   video: null,
   author: '' 
 }
 
-export const ModalAddLetter = () => {
+export const ModalAddPhotos = () => {
 
   const dispatch = useDispatch()
 
-  const { modalAddLetterOpen } = useSelector(state => state.ui)
+  const { modalAddPhotos } = useSelector(state => state.ui)
   
   const [formValues, setFormValues] = useState( initialMemory )
 
-  const { date, title, message, letter } = formValues;
+  const { date, title, message, images } = formValues;
 
 
 const closeModal = () => {
-  dispatch( uiCloseModalAddLetter() )
+  dispatch( uiCloseModalAddPhotos() )
 };
 
 
@@ -72,6 +72,7 @@ const handleInputChange = ( { target }) => {
 
 const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
+      console.log(formValues)
       dispatch( startAddLetter ( formValues ) )           
       setFormValues(initialMemory)
       closeModal()      
@@ -80,7 +81,7 @@ const handleSubmitForm = ( e ) => {
 
   return (
     <Modal
-      isOpen={modalAddLetterOpen}
+      isOpen={modalAddPhotos}
       onRequestClose={closeModal}
       style={customStyles}
       className="modal"
@@ -88,7 +89,7 @@ const handleSubmitForm = ( e ) => {
       closeTimeoutMS={200}
     >
         <div className='encabezado'>
-            <h3> Agregar Carta </h3>
+            <h3> Agregar Fotos </h3>
             <i className="fas fa-times-circle fa-lg" onClick= {closeModal} ></i>
         </div>
         <hr />
@@ -134,17 +135,17 @@ const handleSubmitForm = ( e ) => {
             ></textarea>
         </div>
 
-
         <div className="form-group">
-            <textarea
-                type="text"
-                className="form-control"
-                placeholder="Carta..."
-                rows="8"
-                name="letter"
-                value= { letter }
-                onChange= { handleInputChange }
-            ></textarea>
+            <input
+                type="file"
+                multiple
+                id='files'
+                name='images'
+                className= 'form-control'
+                value= { images }
+            />
+            {/* <input type='submit'/> */}
+
         </div>
 
         <div className='form-group'>
