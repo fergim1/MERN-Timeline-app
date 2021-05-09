@@ -59,3 +59,7 @@
 .encabezado h3{
     margin-left: 10px;
 }
+
+.pointer {
+    cursor: pointer;
+}

@@ -64,7 +64,7 @@ export const TimelineScreen = () => {
                         {
                           (memory.letter) && 
                           <i 
-                            className="fas fa-envelope fa-lg"
+                            className="fas fa-envelope fa-lg pointer"
                             onClick= { () => handleModalLetter (memory) }
                           
                           ></i>
@@ -73,14 +73,14 @@ export const TimelineScreen = () => {
                         {
                           (memory.images) && 
                           <i 
-                          className="fas fa-image fa-lg"
+                          className="fas fa-image fa-lg pointer"
                           onClick= { () => handleModalPhotos (memory) }
                           ></i>
                         }
 
                         {
                           (memory.video) && 
-                          <i className="fas fa-video fa-lg"></i>
+                          <i className="fas fa-video fa-lg pointer"></i>
                         } 
 
                     </div>

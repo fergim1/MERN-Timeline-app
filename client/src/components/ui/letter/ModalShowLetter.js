@@ -45,20 +45,18 @@ export const ModalShowLetter = () => {
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
-        <div className='encabezado'>
-            <h3> Carta </h3>
-            <i className="fas fa-times-circle fa-lg" onClick= {closeModal} ></i>
+        <div className='encabezado'>          
+            <h3> Carta </h3><small className='date' > {activeMemory?.date } </small>
+            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr /> 
-        <div className='container'>
-          <p className='letter'>
-            { activeMemory?.letter}
-          </p>        
-          <small>
-            { activeMemory?.author}
-          </small>  
-      
-
+        <div className='container letter'>
+            <p >
+              { activeMemory?.letter}
+            </p>        
+            <small className='firma'>
+              { activeMemory?.author}
+            </small>    
         </div>
 
     </Modal>

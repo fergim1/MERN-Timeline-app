@@ -90,7 +90,7 @@ const handleSubmitForm = ( e ) => {
     >
         <div className='encabezado'>
             <h3> Agregar Fotos </h3>
-            <i className="fas fa-times-circle fa-lg" onClick= {closeModal} ></i>
+            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr />
  
