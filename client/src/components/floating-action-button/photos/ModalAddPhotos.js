@@ -34,7 +34,7 @@ const initialMemory = {
   letter: null,
   images: null,
   video: null,
-  author: '' 
+  user: {} 
 }
 
 export const ModalAddPhotos = () => {

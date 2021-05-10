@@ -25,7 +25,10 @@ const initialState = {
                     letter: 'It is a long established fact thIt is a long estabestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conestablished fact that a reader will be distracted by the readable conlished fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long establiIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteIt is a long established fact that a reader will be distracted by the readable conteshed fact that a reader will be distracted by the readable conteat a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to usinking it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
                     images: null,
                     video: null,
-                    author: 'Fernando'  
+                    user: {
+                            id: 457896,
+                            name: 'Florencia'
+                          }  
                 },
                 {
                     id: 458962,
@@ -35,7 +38,10 @@ const initialState = {
                     letter: null,
                     images: [bebe1, bebe2, bebe3],
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 457596,
+                        name: 'Florencia'
+                      }   
                 },
                 {
                     id: 754896,
@@ -45,7 +51,10 @@ const initialState = {
                     letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
                     images: null,
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 452896,
+                        name: 'Roberto'
+                      }    
                 },
                 {
                     id: 458759,
@@ -55,7 +64,10 @@ const initialState = {
                     letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
                     images: null,
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 417896,
+                        name: 'Fer'
+                      }    
                 },
                 {
                     id: 456854,
@@ -65,7 +77,11 @@ const initialState = {
                     letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
                     images: null,
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 417826,
+                        name: 'claudio'
+                        
+                         },
                 },
                 {
                     id: 418759,
@@ -75,7 +91,10 @@ const initialState = {
                     letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
                     images: null,
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 412896,
+                        name: 'Fernanding'
+                          }
                 },
                 {
                     id: 658478,
@@ -85,7 +104,10 @@ const initialState = {
                     letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
                     images: null,
                     video: null,
-                    author: 'Florencia'  
+                    user: {
+                        id: 417846,
+                        name: 'Feflor'
+                        }
                 },
                 {
                     id: 458459,
@@ -95,7 +117,10 @@ const initialState = {
                     letter: null,
                     images: null,
                     video: 'video',
-                    author: 'Florencia'  
+                    user: {
+                        id: 417896,
+                        name: 'sasasasa'
+                    }  
                 },
                 
             ],

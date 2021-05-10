@@ -55,7 +55,7 @@ export const ModalShowLetter = () => {
               { activeMemory?.letter}
             </p>        
             <small className='firma'>
-              { activeMemory?.author}
+              { activeMemory?.user.name}
             </small>    
         </div>
 

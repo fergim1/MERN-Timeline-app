@@ -34,8 +34,10 @@ const initialMemory = {
   letter: '',
   images: null,
   video: null,
-  author: '' 
+  user: '' 
 }
+
+// user tengo que sacarlode la autenticacion, donde en user.name va a estar
 
 export const ModalAddLetter = () => {
 
