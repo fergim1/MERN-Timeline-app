@@ -11,7 +11,6 @@ export const ButtonAddFab = () => {
     
      const styleButton = {
         backgroundColor: '#fc0071',
-        zIndex: '99'
       }
 
       const styleButtonMain = {

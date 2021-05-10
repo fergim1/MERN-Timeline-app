@@ -17,6 +17,8 @@ export const types = {
 
     timelineAddLetter: '[timeline] Add Letter',
 
+    timelineAddPhotos: '[timeline] Add Photos'
+
 
     
 }

@@ -1,6 +1,7 @@
 import { types } from "../types/types"
 
 
+
 export const startAddLetter = ( letter ) => {
     return async( dispatch ) => {
 
@@ -28,3 +29,17 @@ const activeMemory = ( memory ) => ({
 })
 
 export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiveMemory})
+
+
+export const startAddPhotos = ( photos ) => {
+    return async( dispatch ) => {
+
+        dispatch( addPhotos( photos ) )
+
+    }
+}
+
+const addPhotos = ( photos ) => ({ 
+    type: types.timelineAddPhotos,
+    payload: photos
+})

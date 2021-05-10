@@ -11,7 +11,7 @@ moment.locale('es');
 
 const now = moment().format("DD - MMMM - YYYY")
 const mañana = moment().add(3, 'days').format("DD - MMMM - YYYY")
-
+const otroDia = moment().add(40, 'days').format("DD - MMMM - YYYY")
 
 
 const initialState = {
@@ -47,6 +47,56 @@ const initialState = {
                     video: null,
                     author: 'Florencia'  
                 },
+                {
+                    id: 458759,
+                    date: mañana,
+                    title: 'Este es otro ',
+                    message: 'Este es un mensaje  Este es un mensaje 2Este es un mensaje 2Este es un mensaje 22',
+                    letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
+                    images: null,
+                    video: null,
+                    author: 'Florencia'  
+                },
+                {
+                    id: 456854,
+                    date: mañana,
+                    title: 'Este es otro ',
+                    message: 'Este es un mensaje  Este es un mensaje 2Este es un mensaje 2Este es un mensaje 22',
+                    letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
+                    images: null,
+                    video: null,
+                    author: 'Florencia'  
+                },
+                {
+                    id: 418759,
+                    date: mañana,
+                    title: 'Este es otro ',
+                    message: 'Este es un mensaje  Este es un mensaje 2Este es un mensaje 2Este es un mensaje 22',
+                    letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
+                    images: null,
+                    video: null,
+                    author: 'Florencia'  
+                },
+                {
+                    id: 658478,
+                    date: mañana,
+                    title: 'Este es otro ',
+                    message: 'Este es un mensaje  Este es un mensaje 2Este es un mensaje 2Este es un mensaje 22',
+                    letter: 'Aca iria una cartaaaaaaaaaaaaaaaaaaaa. Este es un mensaje 2Este es un mensaje 2Este es un mensaj',
+                    images: null,
+                    video: null,
+                    author: 'Florencia'  
+                },
+                {
+                    id: 458459,
+                    date: otroDia,
+                    title: 'llega hasta aca',
+                    message: 'Este es un mensaje  Este es un mensaje 2Este es un mensaje 2Este es un mensaje 22',
+                    letter: null,
+                    images: null,
+                    video: 'video',
+                    author: 'Florencia'  
+                },
                 
             ],
     activeMemory: null
@@ -69,6 +119,11 @@ export const timelineReducer = ( state=initialState , action ) => {
             return {
                 ...state,
                 activeMemory: null
+            }
+        case types.timelineAddPhotos:
+            return {
+                ...state,
+                memories: [ ...state.memories, action.payload]
             }
         
             

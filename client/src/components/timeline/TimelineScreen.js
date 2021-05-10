@@ -1,7 +1,7 @@
 import React from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 
-import { FaShoppingBag } from 'react-icons/fa';
+import { FaEnvelope, FaImage, FaVideo } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
 import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
@@ -21,6 +21,8 @@ export const TimelineScreen = () => {
 
     const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
+    const { activeMemory } = useSelector(state => state.timeline)
+
 
 
     const handleModalLetter = (memory) =>{
@@ -33,11 +35,28 @@ export const TimelineScreen = () => {
       dispatch ( timelineStartActiveMemory( memory ) )
     }
 
+    const handleModalVideo = ( memory ) => {
+      console.log('Click icono VIDEO')
+    }
+
+    const iconsTimeline = (memory) => {
+        if (memory.letter) {
+          return <FaEnvelope className='pointer' onClick= { () => handleModalLetter (memory) }/> 
+        }
+        if (memory.images) {
+          return <FaImage className='pointer' onClick= { () => handleModalPhotos (memory) }/> 
+        }
+        if (memory.video) {
+          return <FaVideo className='pointer' onClick= { () => handleModalVideo (memory) }/> 
+        }
+    }
+
 
   return (
     <div>
       <VerticalTimeline
             className='timeline'
+            animate={false}
       >
           {
               memories.map( (memory) => (
@@ -47,8 +66,8 @@ export const TimelineScreen = () => {
                             contentStyle={{ background: "#FFFFFF", color: "#7A7A7A" }}
                             contentArrowStyle={{ borderRight: "20px solid  #FFFFFF" }}
                             date={ memory.date }
-                            iconStyle={{ background: "#3312AB", color: "#fff" }}
-                            icon={< FaShoppingBag />}
+                            iconStyle={{ background: "#3312AB", color: "#fff" }}                            
+                            icon= { iconsTimeline( memory ) }    
                     >
                         
                     <h3 className="vertical-timeline-element-title">
@@ -73,14 +92,17 @@ export const TimelineScreen = () => {
                         {
                           (memory.images) && 
                           <i 
-                          className="fas fa-image fa-lg pointer"
-                          onClick= { () => handleModalPhotos (memory) }
+                            className="fas fa-image fa-lg pointer"
+                            onClick= { () => handleModalPhotos (memory) }
                           ></i>
                         }
 
                         {
                           (memory.video) && 
-                          <i className="fas fa-video fa-lg pointer"></i>
+                          <i 
+                            className="fas fa-video fa-lg pointer"
+                            onClick= { () => handleModalVideo (memory) }
+                            ></i>
                         } 
 
                     </div>
@@ -91,15 +113,10 @@ export const TimelineScreen = () => {
           }
 
 
-        {/* <VerticalTimelineElement
-          iconStyle={{ background: "#4462F7", color: "#fff" }}
-          icon={< FaPlusCircle />}
-        /> */}
-
-
       </VerticalTimeline>
-      
-      <ButtonAddFab/>
+      {
+        !activeMemory && <ButtonAddFab/>
+      }
       <ModalAddLetter/>
       <ModalShowLetter/>
       <ModalAddPhotos/>

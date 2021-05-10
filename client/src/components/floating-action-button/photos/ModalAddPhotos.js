@@ -8,7 +8,7 @@ import "react-datetime/css/react-datetime.css";
 import {  uiCloseModalAddPhotos } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import "./styleModal.css";
-import { startAddLetter } from "../../../actions/timeline";
+import { startAddPhotos } from "../../../actions/timeline";
 
 
 
@@ -73,10 +73,16 @@ const handleInputChange = ( { target }) => {
 const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
       console.log(formValues)
-      dispatch( startAddLetter ( formValues ) )           
+      dispatch( startAddPhotos ( formValues ) )           
       setFormValues(initialMemory)
       closeModal()      
 }
+  const subirArchivos = ( imagenes ) => { 
+    setFormValues({
+      ...formValues,
+      images: imagenes
+    })
+  }
 
 
   return (
@@ -142,7 +148,8 @@ const handleSubmitForm = ( e ) => {
                 id='files'
                 name='images'
                 className= 'form-control'
-                value= { images }
+                onChange={ (e) => subirArchivos (e.target.files)}
+                // value= { images }
             />
             {/* <input type='submit'/> */}
 
