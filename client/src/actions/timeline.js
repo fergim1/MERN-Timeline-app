@@ -1,3 +1,4 @@
+import { UploadFiles } from "../helpers/UploadFiles"
 import { types } from "../types/types"
 
 
@@ -31,15 +32,16 @@ const activeMemory = ( memory ) => ({
 export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiveMemory})
 
 
-export const startAddPhotos = ( photos ) => {
+export const startAddPhotos = ( memory ) => {
     return async( dispatch ) => {
 
-        dispatch( addPhotos( photos ) )
-
+        const fileUrl = await UploadFiles(memory)
+        memory.images = fileUrl
+        dispatch( addPhotos( memory ) )
     }
 }
 
-const addPhotos = ( photos ) => ({ 
+const addPhotos = ( memory ) => ({ 
     type: types.timelineAddPhotos,
-    payload: photos
+    payload: memory
 })

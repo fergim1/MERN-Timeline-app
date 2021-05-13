@@ -45,7 +45,7 @@ export const ModalAddPhotos = () => {
   
   const [formValues, setFormValues] = useState( initialMemory )
 
-  const { date, title, message, images } = formValues;
+  const { date, title, message } = formValues;
 
 
 const closeModal = () => {
@@ -70,10 +70,9 @@ const handleInputChange = ( { target }) => {
   })
 }
 
-const handleSubmitForm = ( e ) => {
+const handleSubmitForm = async ( e ) => {
       e.preventDefault(); 
-      console.log(formValues)
-      dispatch( startAddPhotos ( formValues ) )           
+      dispatch( startAddPhotos ( formValues ) )   
       setFormValues(initialMemory)
       closeModal()      
 }
@@ -82,8 +81,8 @@ const handleSubmitForm = ( e ) => {
       ...formValues,
       images: imagenes
     })
-  }
 
+  }
 
   return (
     <Modal
@@ -144,9 +143,9 @@ const handleSubmitForm = ( e ) => {
         <div className="form-group">
             <input
                 type="file"
-                multiple
-                id='files'
-                name='images'
+                // multiple
+                // id='files'
+                // name='images'
                 className= 'form-control'
                 onChange={ (e) => subirArchivos (e.target.files)}
                 // value= { images }

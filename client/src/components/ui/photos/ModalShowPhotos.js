@@ -7,9 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { timelineCleanActiveMemory } from "../../../actions/timeline";
 import { uiCloseModalShowPhotos } from "../../../actions/ui";
 
-import {fotos} from './fotos'
-
 import "./styleModal.css";
+import { fotos, arrayFotos} from "./fotos";
 
 
 const customStyles = {
@@ -27,6 +26,7 @@ Modal1.setAppElement("#root");
 
 
 export const ModalShowPhotos = () => {
+  const { memories } = useSelector(state => state.timeline)
 
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -51,7 +51,9 @@ export const ModalShowPhotos = () => {
       setViewerIsOpen(false);
     };
 
+    const fotitos = arrayFotos (memories)
 
+    
   return (
     <Modal1
       isOpen={ModalShowPhotos}
@@ -70,10 +72,14 @@ export const ModalShowPhotos = () => {
           <h5>
             { activeMemory?.title}
           </h5>
-          <div className='fotos'>
+          <img src={activeMemory?.images} alt='' />
 
-            <Gallery photos={fotos} onClick={openLightbox} />
-                  </div>
+
+{/* GALLERY and LIGHTBOX */}
+          {/* <div className='fotos'>
+
+            <Gallery photos={fotitos} onClick={openLightbox} />
+          </div>
                 <ModalGateway>
                 {
                     viewerIsOpen 
@@ -81,7 +87,7 @@ export const ModalShowPhotos = () => {
                         <Modal onClose={closeLightbox}>
                           <Carousel
                             currentIndex={currentImage}
-                            views={fotos.map(x => ({
+                            views={fotitos.map(x => ({
                               ...x,
                               srcset: x.srcSet,
                               caption: x.title
@@ -91,7 +97,8 @@ export const ModalShowPhotos = () => {
                         ) 
                     : null
                 }
-                </ModalGateway>            
+                </ModalGateway>             */}
+{/* end GALLERY and LIGHTBOX */}
 
 
         </div>

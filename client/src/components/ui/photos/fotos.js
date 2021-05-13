@@ -8,6 +8,7 @@ import bebe7 from '../../../images/bebe7.jpg'
 import bebe8 from '../../../images/bebe8.jpg'
 
 
+
 export const fotos = [
     {
       src: bebe1,
@@ -50,3 +51,21 @@ export const fotos = [
         height: 4
       }
 ]
+
+
+
+
+export function arrayFotos ( memories ) {
+  var arrayUrl = []
+      for (var i = 0 ; i< memories.length; i++) {
+        if (memories[i].images) {
+              let objetoUrl = {
+                         src: memories[i].images,
+                         width: 4,
+                         height: 4
+                               }
+       arrayUrl.push(objetoUrl)
+          }
+     }
+   return arrayUrl
+ }
