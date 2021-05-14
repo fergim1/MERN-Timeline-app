@@ -7,7 +7,7 @@ import "react-datetime/css/react-datetime.css";
 
 import { uiCloseModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
-import { startAddMemory } from "../../../actions/timeline";
+import { startAddLetter } from "../../../actions/timeline";
 import "./modalAddLetter.css";
 
 
@@ -69,7 +69,7 @@ const handleInputChange = ( { target }) => {
 const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
       console.log(formValues)
-      dispatch( startAddMemory ( formValues ) )           
+      dispatch( startAddLetter ( formValues ) )           
       setFormValues(initialMemory)
       closeModal()      
 }

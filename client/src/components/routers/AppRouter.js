@@ -10,13 +10,14 @@ import { AuthRouter } from "./AuthRouter";
 import { PrivateRoute } from "./PrivateRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStorage } from "../../actions/auth";
+import { startGetMemories } from "../../actions/timeline";
 
 
 export const AppRouter = () => {
+
     const dispatch = useDispatch()
     const { authenticated } = useSelector(state => state.auth)
 
-    // const [ isAuthenticated, setIsAuthenticated ] = useState(null)
     const [ checking, setChecking ] = useState(true)
 
     useEffect(() => {
@@ -24,12 +25,9 @@ export const AppRouter = () => {
         const name = localStorage.getItem('name')
 
         if( uid ) {
-            dispatch(loginStorage (uid, name))
-            // setIsAuthenticated(true)
+            dispatch( loginStorage ( uid, name ))
+            dispatch( startGetMemories ( uid ))
         }
-        // else {
-        //     setIsAuthenticated(false)
-        // }
         setChecking(false)
 
     }, [dispatch, authenticated])

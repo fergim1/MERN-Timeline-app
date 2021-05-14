@@ -75,8 +75,12 @@ export const timelineReducer = ( state=initialState , action ) => {
                 memories: [ ...state.memories, action.payload]
             }
         
+        case types.timelineGetMemories:
+            return {
+                ...state,
+                memories: action.payload
+            }   
             
-
         default:
             return state;
     }

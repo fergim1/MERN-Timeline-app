@@ -3,16 +3,44 @@ import { UploadFiles } from "../helpers/UploadFiles"
 import { types } from "../types/types"
 
 
-const urlLocal = process.env.REACT_APP_API_URL
+const localHost = process.env.REACT_APP_API_URL
 
-export const startAddMemory = ( memory ) => {
+
+export const startGetMemories = ( userID ) => {
+    return async ( dispatch ) => {
+
+
+        const resp = await fetch ( `${localHost}memory/${userID}`)
+
+        const body = await resp.json();
+        console.log(body)
+        const memories = body.memories
+
+        if( body.ok ) {
+
+            dispatch( getMemories( memories ) )
+
+        } else {
+            Swal.fire('Error', body.msg, 'error');
+        }
+
+    }
+}
+
+const getMemories = ( memories ) => ({ 
+    type: types.timelineGetMemories,
+    payload: memories
+})
+
+
+export const startAddLetter = ( memory ) => {
     return async( dispatch, getState ) => {
 
         const { uid } = getState().auth
         memory.user = uid
         console.log(memory)
 
-        const resp = await fetch( 'http://localhost:4000/memory/add', {
+        const resp = await fetch ( 'http://localhost:4000/memory/add', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -21,18 +49,16 @@ export const startAddMemory = ( memory ) => {
         });
 
         const body = await resp.json();
+        const memoryGuardada = body.memory
         console.log(body)
 
         if( body.ok ) {
 
-            dispatch( addMemory( memory ) )
+            dispatch( addMemory( memoryGuardada ) )
 
         } else {
             Swal.fire('Error', body.msg, 'error');
         }
-
-
-   
 
     }
 }
@@ -59,15 +85,42 @@ export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiv
 
 
 export const startAddPhotos = ( memory ) => {
-    return async( dispatch ) => {
+    return async( dispatch, getState ) => {
+
+        const { uid } = getState().auth
+        // console.log(uid)
+        memory.user = uid
+        // console.log(memory.user)
 
         const fileUrl = await UploadFiles(memory)
         memory.images = fileUrl
-        dispatch( addPhotos( memory ) )
+
+        console.log(memory)
+
+        const resp = await fetch ( 'http://localhost:4000/memory/add', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify( memory)
+        });
+
+        const body = await resp.json();
+        const memoryGuardado = body.memory
+        console.log(body)
+
+        if( body.ok ) {
+
+            dispatch( addMemory( memoryGuardado ) )
+
+        } else {
+            Swal.fire('Error', body.msg, 'error');
+        }
+
     }
 }
 
-const addPhotos = ( memory ) => ({ 
-    type: types.timelineAddPhotos,
-    payload: memory
-})
+// const addPhotos = ( memory ) => ({ 
+//     type: types.timelineAddPhotos,
+//     payload: memory
+// })

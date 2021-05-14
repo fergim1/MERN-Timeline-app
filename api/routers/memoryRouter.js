@@ -1,11 +1,12 @@
+
 //    PATH :  host + /memory
 
 const { Router } = require('express');
-const { crearMemory } = require('../controllers/memoryController');
+const { crearMemory, obtenerMemories } = require('../controllers/memoryController');
 const router = Router();
 
 
-// router.get ('/',  )
+router.get ('/:userID',  obtenerMemories)
 
 router.post('/add', crearMemory  )
 

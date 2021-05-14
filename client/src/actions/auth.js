@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 // import { eventLogout } from './events';
 
 
-const urlLocal = process.env.REACT_APP_API_URL
+const localHost = process.env.REACT_APP_API_URL
 
 export const startLogin = ( email, password ) => {
 
@@ -11,7 +11,7 @@ export const startLogin = ( email, password ) => {
 
     return async( dispatch ) => {
 
-        const resp = await fetch( `${urlLocal}auth/login`, {
+        const resp = await fetch( `${localHost}auth/login`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -45,7 +45,7 @@ export const startRegister = ( name, email, password ) => {
         const data  = {name, email, password }
         console.log(data)
 
-        const resp = await fetch( 'http://localhost:4000/auth/register', {
+        const resp = await fetch( `${localHost}auth/register`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

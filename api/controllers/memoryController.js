@@ -1,14 +1,11 @@
 const { response } = require('express')
 const Memory = require('../models/Memory')
-// const moment = require('moment')
+
+
 
 const crearMemory = async (req, res = response) =>{
-    // console.log(req.body)
-    // console.log(req.body.user)
-    // const date = moment(req.body.date)
-    // req.body.date = date
+
     const memory = new Memory (req.body)
-    console.log(memory)
     
     try {        
         memory.user = req.body.user
@@ -26,8 +23,34 @@ const crearMemory = async (req, res = response) =>{
     }  
 }
 
+const obtenerMemories = async ( req, res=response ) =>{
+    
+    const user  = req.params.userID    
+
+    try {
+        const memories = await Memory.find({user}).exec();
+
+        if ( memories ) {
+            res.json({
+                ok: true,
+                memories
+            })
+        }
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador'
+        })        
+    }
+
+
+} 
+
 
 
 module.exports = {
     crearMemory,
+    obtenerMemories
 }

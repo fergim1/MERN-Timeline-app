@@ -27,14 +27,11 @@ Modal.setAppElement("#root");
 
 const initialMemory = {
 
-  id: 132465,
   date: moment().format("DD - MMM - YYYY"),
   title: '',
   message: '',
-  letter: null,
   images: null,
-  video: null,
-  user: {} 
+  user: ''
 }
 
 export const ModalAddPhotos = () => {
@@ -73,6 +70,7 @@ const handleInputChange = ( { target }) => {
 const handleSubmitForm = async ( e ) => {
       e.preventDefault(); 
       dispatch( startAddPhotos ( formValues ) )   
+      // console.log(formValues)
       setFormValues(initialMemory)
       closeModal()      
 }
@@ -101,7 +99,6 @@ const handleSubmitForm = async ( e ) => {
  
              
         <form 
-            className="container"
             onSubmit= { handleSubmitForm }
       >
         <div className="form-group">
