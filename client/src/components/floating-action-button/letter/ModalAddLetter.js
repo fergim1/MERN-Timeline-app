@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
 import moment from 'moment';
@@ -7,8 +7,8 @@ import "react-datetime/css/react-datetime.css";
 
 import { uiCloseModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
-import "./styleModal.css";
-import { startAddLetter } from "../../../actions/timeline";
+import { startAddMemory } from "../../../actions/timeline";
+import "./modalAddLetter.css";
 
 
 
@@ -27,13 +27,10 @@ Modal.setAppElement("#root");
 
 const initialMemory = {
 
-  id: 132465,
   date: moment().format("DD - MMM - YYYY"),
   title: '',
   message: '',
   letter: '',
-  images: null,
-  video: null,
   user: '' 
 }
 
@@ -49,7 +46,6 @@ export const ModalAddLetter = () => {
 
   const { date, title, message, letter } = formValues;
 
-
 const closeModal = () => {
   dispatch( uiCloseModalAddLetter() )
 };
@@ -57,12 +53,10 @@ const closeModal = () => {
 
 const handleDateChange = ( e ) => {
    const fecha = moment(e).format("DD - MMM - YYYY")
-  
-  setFormValues ( {
-    ...formValues,
-    date : fecha
-  })
-  
+    setFormValues ( {
+      ...formValues,
+      date : fecha
+    })
 }
 
 const handleInputChange = ( { target }) => {
@@ -74,7 +68,8 @@ const handleInputChange = ( { target }) => {
 
 const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
-      dispatch( startAddLetter ( formValues ) )           
+      console.log(formValues)
+      dispatch( startAddMemory ( formValues ) )           
       setFormValues(initialMemory)
       closeModal()      
 }
@@ -89,15 +84,15 @@ const handleSubmitForm = ( e ) => {
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
+
+     
         <div className='encabezado'>
             <h3> Agregar Carta </h3>
             <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr />
- 
              
         <form 
-            className="container"
             onSubmit= { handleSubmitForm }
       >
         <div className="form-group">
@@ -157,7 +152,6 @@ const handleSubmitForm = ( e ) => {
         </div>
       </form>
       
-
 
     </Modal>
   );

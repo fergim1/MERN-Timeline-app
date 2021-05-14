@@ -47,7 +47,7 @@
 }
 
 .encabezado  {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content:space-between;
 }
@@ -61,6 +61,7 @@
 }
 
 .letter {
+    
     height: 500px;
     flex: 1 1 auto;
     overflow-y: scroll;

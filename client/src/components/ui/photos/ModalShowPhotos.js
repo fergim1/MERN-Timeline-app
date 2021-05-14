@@ -68,7 +68,6 @@ export const ModalShowPhotos = () => {
             <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr /> 
-        <div className='container'>
           <h5>
             { activeMemory?.title}
           </h5>
@@ -101,7 +100,7 @@ export const ModalShowPhotos = () => {
 {/* end GALLERY and LIGHTBOX */}
 
 
-        </div>
+
 
     </Modal1>
   );

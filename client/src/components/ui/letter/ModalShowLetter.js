@@ -50,7 +50,7 @@ export const ModalShowLetter = () => {
             <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr /> 
-        <div className='container letter'>
+        <div className='letter'>
             <p >
               { activeMemory?.letter}
             </p>        

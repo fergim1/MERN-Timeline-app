@@ -1,13 +1,13 @@
-//    PATH :  host + /letter
+//    PATH :  host + /memory
 
 const { Router } = require('express');
-const { AddLetter } = require('../controllers/letterController');
+const { crearMemory } = require('../controllers/memoryController');
 const router = Router();
 
 
 // router.get ('/',  )
 
-router.post('/add', AddLetter  )
+router.post('/add', crearMemory  )
 
 // router.delete ('/:id',  )
 

@@ -21,7 +21,7 @@ export const types = {
     timelineActiveMemory: '[timeline] Active Memory',
     timelineCleanActiveMemory: '[timeline] Clean Active Memory',
 
-    timelineAddLetter: '[timeline] Add Letter',
+    timelineAddMemory: '[timeline] Add Memory',
 
     timelineAddPhotos: '[timeline] Add Photos'
 

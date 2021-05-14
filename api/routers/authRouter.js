@@ -8,7 +8,7 @@ const { crearUsuario, loginUsuario, revalidarToken} = require('../controllers/au
 const { validarCampos } = require('../middlewares/validar-campos');
 
 
-router.post('/add', 
+router.post('/register', 
 [
     check( 'name' , 'El nombre es obligatorio').not().isEmpty(),
     check( 'email' , 'El email es obligatorio y debe ser un email válido').isEmail(),
@@ -17,7 +17,7 @@ router.post('/add',
 ]
 , crearUsuario  )
 
-router.post('/', 
+router.post('/login', 
 [
     check( 'email' , 'El email es obligatorio y debe ser un email válido').isEmail(),
     check( 'password' , 'El password es obligatorio').not().isEmpty(),
@@ -25,7 +25,7 @@ router.post('/',
 ],
  loginUsuario  )
 
-router.get ('/revalidartoken', revalidarToken  )
+// router.get ('/revalidartoken', revalidarToken  )
 
 // router.delete ('/:id',  )
 
