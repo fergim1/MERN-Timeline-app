@@ -70,7 +70,6 @@ const handleInputChange = ( { target }) => {
 const handleSubmitForm = async ( e ) => {
       e.preventDefault(); 
       dispatch( startAddPhotos ( formValues ) )   
-      // console.log(formValues)
       setFormValues(initialMemory)
       closeModal()      
 }
@@ -140,7 +139,7 @@ const handleSubmitForm = async ( e ) => {
         <div className="form-group">
             <input
                 type="file"
-                // multiple
+                multiple
                 // id='files'
                 // name='images'
                 className= 'form-control'

@@ -21,8 +21,7 @@ export const TimelineScreen = () => {
 
     const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
-    const { activeMemory } = useSelector(state => state.timeline)
-
+    const { activeMemory } = useSelector(state => state.timeline)  
 
 
     const handleModalLetter = (memory) =>{
@@ -55,6 +54,7 @@ export const TimelineScreen = () => {
 
   return (
     <div>
+  
       <VerticalTimeline
             className='timeline'
             animate={false}
@@ -91,7 +91,7 @@ export const TimelineScreen = () => {
                         }
 
                         {
-                          (memory.images) && 
+                          (memory.images.length > 0) && 
                           <i 
                             className="fas fa-image fa-lg pointer"
                             onClick= { () => handleModalPhotos (memory) }
@@ -115,13 +115,14 @@ export const TimelineScreen = () => {
 
 
       </VerticalTimeline>
-      {
-        !activeMemory && <ButtonAddFab/>
-      }
       <ModalAddLetter/>
       <ModalShowLetter/>
       <ModalAddPhotos/>
-      <ModalShowPhotos/>
+      <ModalShowPhotos/>     
+
+      {
+        !activeMemory.title && <ButtonAddFab/>
+      }
     </div>
   );
 };

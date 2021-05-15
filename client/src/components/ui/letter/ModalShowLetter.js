@@ -28,6 +28,8 @@ export const ModalShowLetter = () => {
   const dispatch = useDispatch()
 
   const { activeMemory } = useSelector(state => state.timeline)
+  const { auth } = useSelector(state => state.timeline)
+
   const { ModalShowLetter } = useSelector(state => state.ui)
 
     const closeModal = () => {
@@ -55,7 +57,7 @@ export const ModalShowLetter = () => {
               { activeMemory?.letter}
             </p>        
             <small className='firma'>
-              { activeMemory?.user.name}
+              { auth?.name}
             </small>    
         </div>
 

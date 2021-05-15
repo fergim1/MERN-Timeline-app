@@ -1,14 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import Modal1 from "react-modal";
-import Gallery from "react-photo-gallery";
-import Carousel, { Modal, ModalGateway } from "react-images";
-
 import { useDispatch, useSelector } from "react-redux";
 import { timelineCleanActiveMemory } from "../../../actions/timeline";
 import { uiCloseModalShowPhotos } from "../../../actions/ui";
-
+import { prepararArrayUrlFotos } from "../../../helpers/prepararArrayUrlFotos";
+import { GalleryAndLightbox } from "../photos/GalleryAndLightbox";
 import "./styleModal.css";
-import { fotos, arrayFotos} from "./fotos";
 
 
 const customStyles = {
@@ -26,10 +23,6 @@ Modal1.setAppElement("#root");
 
 
 export const ModalShowPhotos = () => {
-  const { memories } = useSelector(state => state.timeline)
-
-  const [currentImage, setCurrentImage] = useState(0);
-  const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
   const dispatch = useDispatch()
 
@@ -41,18 +34,7 @@ export const ModalShowPhotos = () => {
     dispatch (timelineCleanActiveMemory())
     };
 
-    const openLightbox = useCallback((event, { photo, index }) => {
-      setCurrentImage(index);
-      setViewerIsOpen(true);
-    }, []);
-
-    const closeLightbox = () => {
-      setCurrentImage(0);
-      setViewerIsOpen(false);
-    };
-
-    const fotitos = arrayFotos (memories)
-
+    const fotos = prepararArrayUrlFotos (  activeMemory )
     
   return (
     <Modal1
@@ -71,36 +53,15 @@ export const ModalShowPhotos = () => {
           <h5>
             { activeMemory?.title}
           </h5>
-          <img src={activeMemory?.images} alt='' />
 
+          {
+            (fotos)
 
-{/* GALLERY and LIGHTBOX */}
-          {/* <div className='fotos'>
+            ? <GalleryAndLightbox fotos={fotos}/>    
 
-            <Gallery photos={fotitos} onClick={openLightbox} />
-          </div>
-                <ModalGateway>
-                {
-                    viewerIsOpen 
-                    ?  (
-                        <Modal onClose={closeLightbox}>
-                          <Carousel
-                            currentIndex={currentImage}
-                            views={fotitos.map(x => ({
-                              ...x,
-                              srcset: x.srcSet,
-                              caption: x.title
-                            }))}
-                          />
-                        </Modal>
-                        ) 
-                    : null
-                }
-                </ModalGateway>             */}
-{/* end GALLERY and LIGHTBOX */}
+            : <h4> No hay imagenes para mostrar </h4>
 
-
-
+          }
 
     </Modal1>
   );

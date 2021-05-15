@@ -30,7 +30,7 @@ const MemorySchema = Schema({
         type: String,
     },
     images: {
-        type: String,
+        type: Array,
     },
     video: {
         type: String,

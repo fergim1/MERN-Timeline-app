@@ -13,7 +13,7 @@ export const startGetMemories = ( userID ) => {
         const resp = await fetch ( `${localHost}memory/${userID}`)
 
         const body = await resp.json();
-        console.log(body)
+
         const memories = body.memories
 
         if( body.ok ) {
@@ -93,6 +93,7 @@ export const startAddPhotos = ( memory ) => {
         // console.log(memory.user)
 
         const fileUrl = await UploadFiles(memory)
+
         memory.images = fileUrl
 
         console.log(memory)
@@ -107,7 +108,6 @@ export const startAddPhotos = ( memory ) => {
 
         const body = await resp.json();
         const memoryGuardado = body.memory
-        console.log(body)
 
         if( body.ok ) {
 
@@ -119,8 +119,3 @@ export const startAddPhotos = ( memory ) => {
 
     }
 }
-
-// const addPhotos = ( memory ) => ({ 
-//     type: types.timelineAddPhotos,
-//     payload: memory
-// })

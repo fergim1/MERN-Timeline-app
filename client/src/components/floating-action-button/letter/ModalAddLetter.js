@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useState }  from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
 import moment from 'moment';
@@ -34,7 +34,6 @@ const initialMemory = {
   user: '' 
 }
 
-// user tengo que sacarlode la autenticacion, donde en user.name va a estar
 
 export const ModalAddLetter = () => {
 
