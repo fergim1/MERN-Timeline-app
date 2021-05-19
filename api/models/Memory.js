@@ -35,6 +35,9 @@ const MemorySchema = Schema({
     video: {
         type: String,
     },
+    author: {
+        type: String,
+    },
     // Para saber quien creo este evento, hacemos una referencia al usuario
     user: {
         type: Schema.Types.ObjectId,

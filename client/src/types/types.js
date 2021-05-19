@@ -24,7 +24,10 @@ export const types = {
 
     timelineAddMemory: '[timeline] Add Memory',
 
-    timelineAddPhotos: '[timeline] Add Photos'
+    timelineAddPhotos: '[timeline] Add Photos',
+
+    timelineMemoryDeleted: '[timeline] Memory Deleted',
+    timelineMemoryUpdated: '[timeline] Memory Updated'
 
 
     

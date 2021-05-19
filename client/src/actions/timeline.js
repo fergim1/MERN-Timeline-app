@@ -36,8 +36,10 @@ const getMemories = ( memories ) => ({
 export const startAddLetter = ( memory ) => {
     return async( dispatch, getState ) => {
 
-        const { uid } = getState().auth
+        const { uid, name } = getState().auth
         memory.user = uid
+        memory.author = name
+
         console.log(memory)
 
         const resp = await fetch ( 'http://localhost:4000/memory/add', {
@@ -87,16 +89,13 @@ export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiv
 export const startAddPhotos = ( memory ) => {
     return async( dispatch, getState ) => {
 
-        const { uid } = getState().auth
-        // console.log(uid)
+        const { uid, name } = getState().auth
         memory.user = uid
-        // console.log(memory.user)
+        memory.author = name
 
         const fileUrl = await UploadFiles(memory)
 
         memory.images = fileUrl
-
-        console.log(memory)
 
         const resp = await fetch ( 'http://localhost:4000/memory/add', {
             method: 'POST',
@@ -119,3 +118,69 @@ export const startAddPhotos = ( memory ) => {
 
     }
 }
+
+
+
+
+export const startDelete = () => {
+
+    return async ( dispatch, getState ) => {
+
+        const { id } = getState().timeline.activeMemory;
+
+        try {
+
+            const resp = await fetch ( `${localHost}memory/${ id }`, {
+                method: 'DELETE'
+            });
+
+            const body= await resp.json();
+
+            if ( body.ok ) {
+                dispatch ( memoryDeleted() )
+            }
+            else {
+                Swal.fire('Error', body.msg, 'error')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+const memoryDeleted = ( ) => ({ type: types.timelineMemoryDeleted })
+
+
+export const startUpdate = ( memory ) => {
+
+    console.log(memory)
+    return async (dispatch) => {
+
+        try {
+            const resp = await fetch ( `${localHost}memory/${ memory.id }`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(memory)
+            });
+
+            const body= await resp.json();
+
+            if ( body.ok ) {
+                dispatch (memoryUpdated ( memory ))
+            }
+            else {
+                Swal.fire('Error', body.msg, 'error')
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+}
+const memoryUpdated = ( memory ) => ({
+    type: types.timelineMemoryUpdated,
+    payload: memory
+})

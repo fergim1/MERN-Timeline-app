@@ -5,14 +5,15 @@ import { FaEnvelope, FaImage, FaVideo } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
 import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
-
-import "react-vertical-timeline-component/style.min.css";
-import './TimelineScreen.css'
 import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
 import { uiOpenModalShowLetter, uiOpenModalShowPhotos } from "../../actions/ui";
 import { timelineStartActiveMemory } from "../../actions/timeline";
 import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
 import { ModalShowPhotos } from '../ui/photos/ModalShowPhotos'
+
+
+import "react-vertical-timeline-component/style.min.css";
+import './TimelineScreen.css'
 
 
 
@@ -53,8 +54,7 @@ export const TimelineScreen = () => {
  
 
   return (
-    <div>
-  
+    <div>  
       <VerticalTimeline
             className='timeline'
             animate={false}
@@ -121,7 +121,7 @@ export const TimelineScreen = () => {
       <ModalShowPhotos/>     
 
       {
-        !activeMemory.title && <ButtonAddFab/>
+        !activeMemory?.title && <ButtonAddFab/>
       }
     </div>
   );

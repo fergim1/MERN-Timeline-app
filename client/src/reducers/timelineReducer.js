@@ -38,7 +38,29 @@ export const timelineReducer = ( state=initialState , action ) => {
             return {
                 ...state,
                 memories: action.payload
-            }   
+            }
+        
+        case types.timelineMemoryDeleted:
+            return {
+                ...state,
+                memories: state.memories.filter( memory => 
+                            ( memory.id !== state.activeMemory.id )
+                        ),
+                activeMemory: {}
+            }
+
+        case types.timelineMemoryUpdated:
+            return {
+                ...state,
+                memories: state.memories.map( memory =>
+                            (memory.id !== action.payload.id) 
+                            ? memory
+                            : action.payload
+                        )
+                ,
+                activeMemory: {}
+            }
+
             
         default:
             return state;

@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect
+    Redirect,
 } from "react-router-dom";
 import { PublicRoutes } from './PublicRoutes'
-import { TimelineScreen } from "../timeline/TimelineScreen";
 import { AuthRouter } from "./AuthRouter";
 import { PrivateRoute } from "./PrivateRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStorage } from "../../actions/auth";
 import { startGetMemories } from "../../actions/timeline";
+import Navbar from "../navbar";
+import { TimelineScreen } from "../timeline/TimelineScreen";
 
 
 export const AppRouter = () => {
 
     const dispatch = useDispatch()
-    const { authenticated } = useSelector(state => state.auth)
+    const { authenticated = false} = useSelector(state => state.auth)
 
     const [ checking, setChecking ] = useState(true)
 
@@ -43,6 +44,8 @@ export const AppRouter = () => {
     return (
     <div>
         <Router>
+                <Navbar/>
+                
                 <Switch>
                     
                     {/* No esta autenticado */}
@@ -52,7 +55,7 @@ export const AppRouter = () => {
                         component={ AuthRouter }
                     />
                        
-                    {/* SIIIII esta autenticado */}                                
+                    {/* Si esta autenticado */}                                
                     <PrivateRoute 
                         exact
                         isAuthenticated={authenticated}

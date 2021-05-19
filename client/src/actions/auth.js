@@ -111,13 +111,12 @@ const login = ( user ) => ({
 
 
 
-// export const startLogout = () => {
-//     return ( dispatch ) => {
+export const startLogout = () => {
+    return ( dispatch ) => {
 
-//         localStorage.clear();
-//         // dispatch( eventLogout() )
-//         dispatch( logout() );
-//     }
-// }
+        localStorage.clear();
+        dispatch( logout() );
+    }
+}
 
-// const logout = () => ({ type: types.authLogout })
+const logout = () => ({ type: types.authLogout })

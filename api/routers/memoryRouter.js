@@ -2,7 +2,7 @@
 //    PATH :  host + /memory
 
 const { Router } = require('express');
-const { crearMemory, obtenerMemories } = require('../controllers/memoryController');
+const { crearMemory, obtenerMemories, eliminarMemory, actualizarMemory } = require('../controllers/memoryController');
 const router = Router();
 
 
@@ -10,9 +10,10 @@ router.get ('/:userID',  obtenerMemories)
 
 router.post('/add', crearMemory  )
 
-// router.delete ('/:id',  )
+router.delete ('/:id', eliminarMemory  )
 
-// router.put ('/:id',  )
+router.put ( '/:id', actualizarMemory )
+
 
 
 

@@ -67,7 +67,8 @@
     overflow-y: scroll;
     font-family: 'Caveat', cursive;
     font-size: 24px;
-    color: #26619c
+    color: hsl(210, 61%, 38%);
+    padding: 50px;
  }
 
  /* .letter::first-letter {
@@ -90,4 +91,8 @@
     font-size: 15px;
     font-weight: bold;
     font-size: 24px;      
+}
+
+.borraryactualizar {
+    color: gray
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import Modal from "react-modal";
+import { FaTrash, FaSync, FaGripLinesVertical } from 'react-icons/fa';
 
 
-import {  uiCloseModalShowLetter } from "../../../actions/ui";
+import {  uiCloseModalShowLetter, uiOpenModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import "./styleModal.css";
-import { timelineCleanActiveMemory } from "../../../actions/timeline";
+import { startDelete, timelineCleanActiveMemory, startUpdate } from "../../../actions/timeline";
 
 
 
@@ -28,7 +29,6 @@ export const ModalShowLetter = () => {
   const dispatch = useDispatch()
 
   const { activeMemory } = useSelector(state => state.timeline)
-  const { auth } = useSelector(state => state.timeline)
 
   const { ModalShowLetter } = useSelector(state => state.ui)
 
@@ -37,6 +37,17 @@ export const ModalShowLetter = () => {
     dispatch (timelineCleanActiveMemory())
     };
 
+
+    const handleDelete = ( ) => {
+      dispatch( startDelete () )
+      dispatch( uiCloseModalShowLetter () )
+    }
+
+    const handleUpdate = ( ) => {
+      // dispatch( startUpdate () 
+      dispatch( uiCloseModalShowLetter () )
+      dispatch (uiOpenModalAddLetter() )
+    }
 
   return (
     <Modal
@@ -57,8 +68,20 @@ export const ModalShowLetter = () => {
               { activeMemory?.letter}
             </p>        
             <small className='firma'>
-              { auth?.name}
+              { activeMemory?.author}
             </small>    
+        </div>
+        <div className='borraryactualizar'>
+          <FaTrash
+            onClick={ handleDelete } 
+          /> <small> Borrar </small>   
+          
+          <FaGripLinesVertical/> 
+          
+          <small> Actualizar  </small>  
+          <FaSync
+          onClick={ handleUpdate }
+          />
         </div>
 
     </Modal>

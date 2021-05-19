@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
 import moment from 'moment';
@@ -7,7 +7,7 @@ import "react-datetime/css/react-datetime.css";
 
 import { uiCloseModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
-import { startAddLetter } from "../../../actions/timeline";
+import { startAddLetter, startUpdate, timelineCleanActiveMemory } from "../../../actions/timeline";
 import "./modalAddLetter.css";
 
 
@@ -26,7 +26,6 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const initialMemory = {
-
   date: moment().format("DD - MMM - YYYY"),
   title: '',
   message: '',
@@ -38,6 +37,8 @@ const initialMemory = {
 export const ModalAddLetter = () => {
 
   const dispatch = useDispatch()
+  
+  const { activeMemory } = useSelector(state => state.timeline)
 
   const { modalAddLetterOpen } = useSelector(state => state.ui)
   
@@ -45,8 +46,19 @@ export const ModalAddLetter = () => {
 
   const { date, title, message, letter } = formValues;
 
+  useEffect(() => {
+    if (activeMemory.id){
+      setFormValues(activeMemory)
+    }
+    else {
+      setFormValues(initialMemory)
+    }
+    
+  }, [activeMemory])
+
 const closeModal = () => {
   dispatch( uiCloseModalAddLetter() )
+  dispatch (timelineCleanActiveMemory())
 };
 
 
@@ -66,11 +78,19 @@ const handleInputChange = ( { target }) => {
 }
 
 const handleSubmitForm = ( e ) => {
-      e.preventDefault(); 
-      console.log(formValues)
-      dispatch( startAddLetter ( formValues ) )           
-      setFormValues(initialMemory)
-      closeModal()      
+      e.preventDefault();
+
+      if (activeMemory.id) {
+        dispatch ( startUpdate ( formValues ))
+        setFormValues(initialMemory)
+        closeModal() 
+      } 
+
+      else {
+        dispatch( startAddLetter ( formValues ) )           
+        setFormValues(initialMemory)
+        closeModal()    
+      }
 }
 
 
