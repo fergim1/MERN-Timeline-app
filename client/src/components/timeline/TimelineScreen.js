@@ -10,10 +10,10 @@ import { uiOpenModalShowLetter, uiOpenModalShowPhotos } from "../../actions/ui";
 import { timelineStartActiveMemory } from "../../actions/timeline";
 import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
 import { ModalShowPhotos } from '../ui/photos/ModalShowPhotos'
-
+import moment from 'moment';
 
 import "react-vertical-timeline-component/style.min.css";
-import './TimelineScreen.css'
+import './TimelineScreen.css';
 
 
 
@@ -22,8 +22,7 @@ export const TimelineScreen = () => {
 
     const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
-    const { activeMemory } = useSelector(state => state.timeline)  
-
+    const { activeMemory } = useSelector(state => state.timeline)
 
     const handleModalLetter = (memory) =>{
       dispatch ( uiOpenModalShowLetter() )
@@ -51,7 +50,6 @@ export const TimelineScreen = () => {
         }
     }
 
- 
 
   return (
     <div>  
@@ -66,7 +64,11 @@ export const TimelineScreen = () => {
                             className="vertical-timeline-element--work"
                             contentStyle={{ background: "#FFFFFF", color: "#7A7A7A" }}
                             contentArrowStyle={{ borderRight: "20px solid  #FFFFFF" }}
-                            date={ memory.date }
+                            // date={ memory.date }
+                            date={ moment(memory.date).format("DD - MMMM - YYYY")  }
+
+
+                            
                             iconStyle={{ background: "#3312AB", color: "#fff" }}                            
                             icon= { iconsTimeline( memory ) }    
                     >

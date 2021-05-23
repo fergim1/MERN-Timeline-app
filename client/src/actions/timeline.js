@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { UploadFiles } from "../helpers/UploadFiles"
+import { prepararFormData } from '../helpers/prepararFormData';
 import { types } from "../types/types"
 
 
@@ -40,9 +40,7 @@ export const startAddLetter = ( memory ) => {
         memory.user = uid
         memory.author = name
 
-        console.log(memory)
-
-        const resp = await fetch ( 'http://localhost:4000/memory/add', {
+        const resp = await fetch ( `${localHost}memory/addletter`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -51,12 +49,11 @@ export const startAddLetter = ( memory ) => {
         });
 
         const body = await resp.json();
-        const memoryGuardada = body.memory
-        console.log(body)
+        const memories = body.memories
 
         if( body.ok ) {
 
-            dispatch( addMemory( memoryGuardada ) )
+            dispatch( addMemory( memories ) )
 
         } else {
             Swal.fire('Error', body.msg, 'error');
@@ -86,39 +83,34 @@ const activeMemory = ( memory ) => ({
 export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiveMemory})
 
 
-export const startAddPhotos = ( memory ) => {
+export const startAddPhotos = ( memory, setLoading, closeModal ) => {
     return async( dispatch, getState ) => {
-
+        setLoading((loading) => !loading)
         const { uid, name } = getState().auth
         memory.user = uid
         memory.author = name
 
-        const fileUrl = await UploadFiles(memory)
+        const formData = prepararFormData ( memory )
 
-        memory.images = fileUrl
-
-        const resp = await fetch ( 'http://localhost:4000/memory/add', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify( memory)
-        });
+        const resp = await fetch ( `${localHost}memory/addphotos` , {
+                method: 'POST',
+                body: formData
+            });
 
         const body = await resp.json();
-        const memoryGuardado = body.memory
+
+        const memories = body.memories
 
         if( body.ok ) {
-
-            dispatch( addMemory( memoryGuardado ) )
+            dispatch( addMemory( memories ) )
+            setLoading((loading) => !loading)
+            closeModal()
 
         } else {
             Swal.fire('Error', body.msg, 'error');
         }
-
     }
 }
-
 
 
 
@@ -129,7 +121,6 @@ export const startDelete = () => {
         const { id } = getState().timeline.activeMemory;
 
         try {
-
             const resp = await fetch ( `${localHost}memory/${ id }`, {
                 method: 'DELETE'
             });
@@ -153,7 +144,6 @@ const memoryDeleted = ( ) => ({ type: types.timelineMemoryDeleted })
 
 export const startUpdate = ( memory ) => {
 
-    console.log(memory)
     return async (dispatch) => {
 
         try {
@@ -167,8 +157,10 @@ export const startUpdate = ( memory ) => {
 
             const body= await resp.json();
 
+            const memories = body.memories
+
             if ( body.ok ) {
-                dispatch (memoryUpdated ( memory ))
+                dispatch (memoryUpdated ( memories ))
             }
             else {
                 Swal.fire('Error', body.msg, 'error')
@@ -180,7 +172,7 @@ export const startUpdate = ( memory ) => {
     }
 
 }
-const memoryUpdated = ( memory ) => ({
+const memoryUpdated = ( memories ) => ({
     type: types.timelineMemoryUpdated,
-    payload: memory
+    payload: memories
 })

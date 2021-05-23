@@ -33,11 +33,10 @@
     border-radius: 5px;
     color: rgb(51, 51, 51);
     display: inline;
-    /* max-height: 90%;
-    max-width: 80%; */
+    /* max-height: 70%;
+    max-width: 50%; */
     max-height: 620px;
-    /* max-width: 500px; */
-    max-width: 900px;
+    max-width: 500px;
     outline: none;
     padding: 10px;
     z-index: 999999;
@@ -48,7 +47,7 @@
 }
 
 .encabezado  {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content:space-between;
 }
@@ -60,12 +59,52 @@
 .encabezado h3{
     margin-left: 10px;
 }
+.letter {
+    height: 500px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: hsl(210, 61%, 38%);
+    padding: 25px;
+}
+.tituloYfecha small{
+    margin-bottom: 20px;
+    font-size: 90%;
+    text-align: center;
+}
+.tituloYfecha h3{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Caveat', cursive;
+    color: hsl(210, 61%, 38%);  
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-.pointer {
+
+  .pointer {
     cursor: pointer;
 }
 
-.fotos {
-    height: 500px;
-    overflow-y: scroll;
+.date {
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 40px;
+}
+
+
+.firma {
+    text-transform : capitalize; 
+    font-size: 24px; 
+    text-align: end;
+    padding-right: 25%;
+}
+
+.borraryactualizar {
+    color: rgb(194, 194, 194);
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
 }

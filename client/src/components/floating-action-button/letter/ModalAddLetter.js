@@ -26,7 +26,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const initialMemory = {
-  date: moment().format("DD - MMM - YYYY"),
+  date: moment().toDate(),
   title: '',
   message: '',
   letter: '',
@@ -63,10 +63,9 @@ const closeModal = () => {
 
 
 const handleDateChange = ( e ) => {
-   const fecha = moment(e).format("DD - MMM - YYYY")
     setFormValues ( {
       ...formValues,
-      date : fecha
+      date : e
     })
 }
 
@@ -119,7 +118,7 @@ const handleSubmitForm = ( e ) => {
                     dateFormat="DD-MM-YYYY"
                     timeFormat={false}
                     onChange={ handleDateChange }
-                    value = { date }
+                    value = { activeMemory ? moment(activeMemory.date).format("DD - MMMM - YYYY")  : date }
 
                 />
         </div>
@@ -164,7 +163,7 @@ const handleSubmitForm = ( e ) => {
         </div>
 
         <div className='form-group'>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-primary btn-lg">
             Guardar 
             </button>
             

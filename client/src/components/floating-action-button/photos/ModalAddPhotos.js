@@ -2,7 +2,6 @@ import React, { useState }  from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
 import moment from 'moment';
-
 import "react-datetime/css/react-datetime.css";
 
 import {  uiCloseModalAddPhotos } from "../../../actions/ui";
@@ -27,7 +26,7 @@ Modal.setAppElement("#root");
 
 const initialMemory = {
 
-  date: moment().format("DD - MMM - YYYY"),
+  date: moment().toDate(),
   title: '',
   message: '',
   images: null,
@@ -39,7 +38,9 @@ export const ModalAddPhotos = () => {
   const dispatch = useDispatch()
 
   const { modalAddPhotos } = useSelector(state => state.ui)
-  
+
+  const [loading, setLoading] = useState(false)
+
   const [formValues, setFormValues] = useState( initialMemory )
 
   const { date, title, message } = formValues;
@@ -51,11 +52,9 @@ const closeModal = () => {
 
 
 const handleDateChange = ( e ) => {
-   const fecha = moment(e).format("DD - MMM - YYYY")
-  
   setFormValues ( {
     ...formValues,
-    date : fecha
+    date : e
   })
   
 }
@@ -67,18 +66,17 @@ const handleInputChange = ( { target }) => {
   })
 }
 
-const handleSubmitForm = async ( e ) => {
+const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
-      dispatch( startAddPhotos ( formValues ) )   
-      setFormValues(initialMemory)
-      closeModal()      
+
+      dispatch( startAddPhotos ( formValues , setLoading , closeModal) )   
+      setFormValues(initialMemory)      
 }
   const subirArchivos = ( imagenes ) => { 
     setFormValues({
       ...formValues,
       images: imagenes
     })
-
   }
 
   return (
@@ -90,6 +88,11 @@ const handleSubmitForm = async ( e ) => {
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
+      {
+        (!loading) 
+        ?
+        <div>
+
         <div className='encabezado'>
             <h3> Agregar Fotos </h3>
             <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
@@ -129,7 +132,7 @@ const handleSubmitForm = async ( e ) => {
                 type="text"
                 className="form-control"
                 placeholder="Mensaje.."
-                rows="2"
+                rows="3"
                 name="message"
                 value= { message }
                 onChange= { handleInputChange }
@@ -140,26 +143,35 @@ const handleSubmitForm = async ( e ) => {
             <input
                 type="file"
                 multiple
-                // id='files'
-                // name='images'
                 className= 'form-control'
                 onChange={ (e) => subirArchivos (e.target.files)}
-                // value= { images }
             />
-            {/* <input type='submit'/> */}
+
 
         </div>
 
         <div className='form-group'>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-primary btn-lg ">
             Guardar 
             </button>
             
         </div>
       </form>
-      
+        </div>
 
+        :
+        <div className='cargando'> 
+          <div className='content'>
+          <h6> Cargando imagenes...</h6>
+          <br></br>
+          <div className="spinner-border text-primary" role="status">
+              <span className="sr-only">Loading...</span>
+          </div>
 
+          </div>
+        </div>
+      }
+ 
     </Modal>
   );
 };

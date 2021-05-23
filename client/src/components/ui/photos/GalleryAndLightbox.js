@@ -20,7 +20,7 @@ export const GalleryAndLightbox = ({fotos}) => {
   return (
     <div>
       <div className="fotos">
-        <Gallery photos={fotos} onClick={openLightbox} />
+        <Gallery photos={fotos} onClick={openLightbox}/>
       </div>
       <ModalGateway>
         {viewerIsOpen ? (

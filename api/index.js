@@ -3,6 +3,9 @@ require('dotenv').config()
 var cors = require('cors')
 const authRouter = require('./routers/authRouter');
 const memoryRouter = require('./routers/memoryRouter')
+const letterRouter = require('./routers/letterRouter')
+const photosRouter = require('./routers/photosRouter')
+
 const { dbConnection } = require('./database/config');
 
 
@@ -28,22 +31,19 @@ app.use( express.static('public'))
 app.use( express.json() );
 
 
-//Rutas 
-// Autenticacion => auth
+//RUTAS 
+// Autenticación
 app.use('/auth', authRouter )
 
-// OBTENER TODAS LAS MEMORIES
-// CRUD Letter =>   letter
+// Obtener todas las memories
 app.use('/memory', memoryRouter )
 
-// CRUD photos =>   photos
-// CRUD video =>   video
+// CRUD Letter
+app.use('/letter', letterRouter )
 
+// CRUD Photos
+app.use('/photos', photosRouter )
 
-
-// app.get('/', (req, res) =>{
-//     console.log('Path = / ')
-// })
 
 
 //Escuchar peticiones

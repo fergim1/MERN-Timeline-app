@@ -4,9 +4,9 @@ export function prepararArrayUrlFotos ( activeMemory ) {
     if(activeMemory?.images) {
         for ( var i = 0 ; i < activeMemory.images.length; i++ ) {
                 let objetoUrl = {
-                           src: activeMemory.images[i],
-                           width: 4,
-                           height: 4
+                           src: activeMemory.images[i].secure_url,
+                           width: activeMemory.images[i].width/100,
+                           height: activeMemory.images[i].height/100
                                  }
          arrayUrl.push(objetoUrl)
             

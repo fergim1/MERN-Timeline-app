@@ -15,7 +15,7 @@ export const timelineReducer = ( state=initialState , action ) => {
         case types.timelineAddMemory:
             return {
                 ...state,
-                memories: [ ...state.memories, action.payload]
+                memories: action.payload
             }
         
         case types.timelineActiveMemory:
@@ -31,7 +31,7 @@ export const timelineReducer = ( state=initialState , action ) => {
         case types.timelineAddPhotos:
             return {
                 ...state,
-                memories: [ ...state.memories, action.payload]
+                memories: action.payload
             }
         
         case types.timelineGetMemories:
@@ -52,12 +52,7 @@ export const timelineReducer = ( state=initialState , action ) => {
         case types.timelineMemoryUpdated:
             return {
                 ...state,
-                memories: state.memories.map( memory =>
-                            (memory.id !== action.payload.id) 
-                            ? memory
-                            : action.payload
-                        )
-                ,
+                memories: action.payload,
                 activeMemory: {}
             }
 

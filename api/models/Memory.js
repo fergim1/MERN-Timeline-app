@@ -15,7 +15,7 @@ const { Schema, model } = require('mongoose');
 
 const MemorySchema = Schema({
     date: {
-        type: String,
+        type: Date,
         required: true
     },
     title: {

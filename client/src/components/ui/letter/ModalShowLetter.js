@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import { FaTrash, FaSync, FaGripLinesVertical } from 'react-icons/fa';
-
-
+import Swal from 'sweetalert2';
+import moment from 'moment'
 import {  uiCloseModalShowLetter, uiOpenModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
-import "./styleModal.css";
+import "./styleLetter.css";
 import { startDelete, timelineCleanActiveMemory, startUpdate } from "../../../actions/timeline";
 
 
@@ -26,6 +26,7 @@ Modal.setAppElement("#root");
 
 export const ModalShowLetter = () => {
 
+
   const dispatch = useDispatch()
 
   const { activeMemory } = useSelector(state => state.timeline)
@@ -39,12 +40,32 @@ export const ModalShowLetter = () => {
 
 
     const handleDelete = ( ) => {
-      dispatch( startDelete () )
-      dispatch( uiCloseModalShowLetter () )
+      Swal.fire({
+        title: '¿ Seguro querés eliminarlo ?',
+        text: "No podrás recuperar esta información!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch( startDelete () )
+          dispatch( uiCloseModalShowLetter () )
+       
+          Swal.fire(
+            'Eliminado!',
+            'Tu carta fue eliminada!.',
+            'success'
+          )
+        }
+      })
+
+
     }
 
     const handleUpdate = ( ) => {
-      // dispatch( startUpdate () 
+      // dispatch( startUpdate (activeMemory) )
       dispatch( uiCloseModalShowLetter () )
       dispatch (uiOpenModalAddLetter() )
     }
@@ -59,29 +80,42 @@ export const ModalShowLetter = () => {
       closeTimeoutMS={200}
     >
         <div className='encabezado'>          
-            <h3> Carta </h3><small className='date' > {activeMemory?.date } </small>
-            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
+            <h3> Carta </h3>
+            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} aria-hidden="true"  
+            title="Cerrar" ></i>
         </div>
         <hr /> 
         <div className='letter'>
+            <div className='tituloYfecha'>
+              <small> { activeMemory ? moment(activeMemory?.date).format("DD - MMMM - YYYY") : ''
+              } </small>
+              <h3 > { activeMemory?.title} </h3> 
+            </div>
             <p >
               { activeMemory?.letter}
             </p>        
-            <small className='firma'>
-              { activeMemory?.author}
-            </small>    
+            <p className='firma'>
+              { activeMemory?.author} .
+            </p>    
+     
         </div>
         <div className='borraryactualizar'>
           <FaTrash
+            className='pointer'
+            aria-hidden="true"  
+            title="Borrar"
             onClick={ handleDelete } 
-          /> <small> Borrar </small>   
-          
+          />    
+
           <FaGripLinesVertical/> 
-          
-          <small> Actualizar  </small>  
+
           <FaSync
-          onClick={ handleUpdate }
+            className='pointer'
+            aria-hidden="true"  
+            title="Actualizar"
+            onClick={ handleUpdate }
           />
+
         </div>
 
     </Modal>
