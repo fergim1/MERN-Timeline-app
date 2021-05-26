@@ -14,14 +14,13 @@ export const startGetMemories = ( userID ) => {
 
         const body = await resp.json();
 
-        const memories = body.memories
-
         if( body.ok ) {
-
+            const memories = body.memories
             dispatch( getMemories( memories ) )
 
         } else {
-            Swal.fire('Error', body.msg, 'error');
+            console.log(body.msg)
+            // Swal.fire('Error', body.msg, 'error');
         }
 
     }
@@ -85,6 +84,7 @@ export const timelineCleanActiveMemory = () => ({ type: types.timelineCleanActiv
 
 export const startAddPhotos = ( memory, setLoading, closeModal ) => {
     return async( dispatch, getState ) => {
+        
         setLoading((loading) => !loading)
         const { uid, name } = getState().auth
         memory.user = uid

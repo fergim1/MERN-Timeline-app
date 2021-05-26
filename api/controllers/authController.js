@@ -13,7 +13,7 @@ const crearUsuario = async (req, res=response) =>{
                 if ( usuario ) {
                     return res.status(400).json({
                         ok: false,
-                        msg: 'Un usuario ya existe con ese correo'
+                        msg: 'No puede registrarse porque ya existe un usuario con ese email'
                     });
                 }
 
@@ -54,7 +54,7 @@ const loginUsuario = async ( req, res=response ) =>{
             if ( !usuario ) {
                 return res.status(400).json({
                     ok: false,
-                    msg: 'No existe usuario con ese email'
+                    msg: 'No existe ningún usuario con ese email, por favor regístrese'
                 });
             }
 

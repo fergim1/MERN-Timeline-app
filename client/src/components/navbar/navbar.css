@@ -1,0 +1,41 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1b007b;
+    height: 60px;
+    color: #ffffff;
+    box-shadow: 00px 3px 3px gray;
+}
+nav h3{
+    color: white;
+    margin-left: 10px;
+    font-size: 22px;
+}
+
+.button {
+    border-radius: 5px;
+    background: #FC0071;
+    padding: 4px 20px;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button:hover {
+    transition: all 0.2s ease-in-out;
+    background: #1b007b;
+    color: #FC0071;
+  }
+
+  .iconLogout {
+      font-size: 15px;
+      margin-right: 5px;
+  }

@@ -7,5 +7,20 @@ h3, h4 {
     cursor: pointer;
 }
 .pointer:hover {
-    color: #fc0071
+    color: #1b007b
 }
+
+.tituloYicono {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iconWhite{
+color: white;
+}
+
+.iconGray{
+    font-size: 20px;
+    color: rgb(194, 194, 194);
+    }

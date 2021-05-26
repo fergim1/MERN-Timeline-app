@@ -63,8 +63,6 @@ export const uiReducer = ( state= initialState, action ) => {
                 ModalShowPhotos: false,
             }
 
-
-
         default:
             return state
     }

@@ -15,6 +15,11 @@ const obtenerMemories = async ( req, res=response ) =>{
                 ok: true,
                 memories
             })
+        } else {
+            res.statu(404).json({
+                ok: false,
+                msg: 'El usuario no tiene memorias'
+            })
         }
         
     } 
@@ -177,6 +182,38 @@ const addPhotos =  async ( req, res = response )  => {
       })
   }
 
+  const searchMemories = async ( req, res=response ) =>{
+    const user  = req.params.userID
+    const search  = req.params.search
+
+    console.log('user: ', user)
+    console.log('search: ', search)
+    res.json( 'llegoooo')
+
+
+    // try {
+
+    //       // Get memories by date
+    //     const memoriesEncontradas = await Memory.findOne({ user: user, title: search }).exec();;       
+
+    //     if ( memories ) {
+    //         res.json({
+    //             ok: true,
+    //             memoriesEncontradas
+    //         })
+    //     }        
+    // }     
+    // catch (error) {
+    //     console.log(error);
+    //     res.status(500).json({
+    //         ok: false,
+    //         msg: 'Por favor hable con el administrador'
+    //     })        
+    // }
+
+
+} 
+
 
 module.exports = {
     obtenerMemories,
@@ -184,5 +221,6 @@ module.exports = {
     eliminarMemory,
     addLetter,
     addPhotos,
-    deletePhotos
+    deletePhotos,
+    searchMemories
 }

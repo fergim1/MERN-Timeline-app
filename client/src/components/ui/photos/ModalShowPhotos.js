@@ -7,6 +7,8 @@ import { prepararArrayUrlFotos } from "../../../helpers/prepararArrayUrlFotos";
 import { GalleryAndLightbox } from "../photos/GalleryAndLightbox";
 import { FaTrash, FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import moment from 'moment'
+
 import "./styleModalShowPhotos.css";
 
 
@@ -40,13 +42,20 @@ export const ModalShowPhotos = () => {
 
     const handleDelete = () => {
       Swal.fire({
-        title: '¿ Estas seguro ?',
+        title: '¿ Seguro querés eliminarlo ?',
         text: "No podrás recuperar esta información!",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar!'
+        focusConfirm: false,
+        focusCancel: false,
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'buttonEliminar',
+          cancelButton: 'buttonCancelar',
+        },
+        cancelButtonColor: '#1b007b',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch( startDelete ( ) )
@@ -72,15 +81,9 @@ export const ModalShowPhotos = () => {
         <div className='encabezado'>
           <div className='tituloYfecha'>
              <h5>{ activeMemory?.title }   </h5>  
-             <small> { activeMemory?.date } </small> 
-             <FaTrash
-              className='pointer icono'
-              aria-hidden="true"  
-              title="Borrar"
-              onClick={ handleDelete } 
-            /> 
+             <small>{ moment(activeMemory?.date).format("DD - MMMM - YYYY")} </small> 
           </div>
-          <FaTimesCircle className="fas fa-times-circle fa-lg pointer icono" onClick= {closeModal}  aria-hidden="true"  
+          <FaTimesCircle className="fas fa-times-circle fa-lg pointer icon" onClick= {closeModal}  aria-hidden="true"  
             title="Cerrar"/>   
         </div>
         <hr /> 
@@ -92,15 +95,14 @@ export const ModalShowPhotos = () => {
             : <h4> No hay imagenes para mostrar </h4>
 
           }
-          {/* <div className='borrar'>
-
-            <FaTrash
-              className='pointer icono'
+          <div className='divDelete'>
+          <FaTrash
+              className='pointer icon'
               aria-hidden="true"  
               title="Borrar"
               onClick={ handleDelete } 
             /> 
-          </div> */}
+          </div>
 
     </Modal1>
   );

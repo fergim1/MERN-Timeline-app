@@ -1,19 +1,21 @@
 import React from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
-
-import { FaEnvelope, FaImage, FaVideo } from 'react-icons/fa';
+import moment from 'moment';
+import { FaEnvelope, FaImage } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
+
 import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
 import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
 import { uiOpenModalShowLetter, uiOpenModalShowPhotos } from "../../actions/ui";
 import { timelineStartActiveMemory } from "../../actions/timeline";
 import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
 import { ModalShowPhotos } from '../ui/photos/ModalShowPhotos'
-import moment from 'moment';
+import Navbar from "../navbar";
 
 import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css';
+import { WhitoutMemories } from "../ui/whitout-memories/WhitoutMemories";
 
 
 
@@ -22,7 +24,8 @@ export const TimelineScreen = () => {
 
     const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
-    const { activeMemory } = useSelector(state => state.timeline)
+    const { modalAddLetterOpen, ModalShowLetter:ModalShowLetterOpen, modalAddPhotos:modalAddPhotosOpen, ModalShowPhotos:ModalShowPhotosOpen } = useSelector(state => state.ui)
+
 
     const handleModalLetter = (memory) =>{
       dispatch ( uiOpenModalShowLetter() )
@@ -34,84 +37,54 @@ export const TimelineScreen = () => {
       dispatch ( timelineStartActiveMemory( memory ) )
     }
 
-    const handleModalVideo = ( memory ) => {
-      console.log('Click icono VIDEO')
-    }
+    // const handleModalVideo = ( memory ) => {
+    //   console.log('Click icono VIDEO')
+    // }
 
-    const iconsTimeline = (memory) => {
+    const iconsTimeline = (memory, classIcon) => {
         if (memory.letter) {
-          return <FaEnvelope className='pointer' onClick= { () => handleModalLetter (memory) }/> 
+          return <FaEnvelope className={`pointer ${classIcon}` } onClick= { () => handleModalLetter (memory) }/> 
         }
         if (memory.images) {
-          return <FaImage className='pointer' onClick= { () => handleModalPhotos (memory) }/> 
+          return <FaImage className={`pointer ${classIcon}`} onClick= { () => handleModalPhotos (memory) }/> 
         }
-        if (memory.video) {
-          return <FaVideo className='pointer' onClick= { () => handleModalVideo (memory) }/> 
-        }
-    }
-
+        // if (memory.video) {
+        //   return <FaVideo className='pointer icon' onClick= { () => handleModalVideo (memory) }/> 
+        // }
+    } 
 
   return (
     <div>  
+      <Navbar/>
       <VerticalTimeline
             className='timeline'
             animate={false}
       >
           {
+            
               memories.map( (memory) => (
                     <VerticalTimelineElement
                             key={memory.id}
                             className="vertical-timeline-element--work"
                             contentStyle={{ background: "#FFFFFF", color: "#7A7A7A" }}
                             contentArrowStyle={{ borderRight: "20px solid  #FFFFFF" }}
-                            // date={ memory.date }
                             date={ moment(memory.date).format("DD - MMMM - YYYY")  }
-
-
-                            
-                            iconStyle={{ background: "#3312AB", color: "#fff" }}                            
-                            icon= { iconsTimeline( memory ) }    
+                            iconStyle={{ background: "#FC0071", color: "#fff" }}                            
+                            icon= { iconsTimeline( memory, 'iconWhite' ) }    
                     >
-                        
-                    <h3 className="vertical-timeline-element-title">
-                            { memory.title }
-                    </h3>
 
-                    <p>
-                            { memory.message }
-                    </p>
-
-                    <div style={{marginTop: '10px'}}>
-
-                        {
-                          (memory.letter) && 
-                          <i 
-                            className="fas fa-envelope fa-lg pointer"
-                            onClick= { () => handleModalLetter (memory) }
-                          
-                          ></i>
-                        }
-
-                        {
-                          (memory.images.length > 0) && 
-                          <i 
-                            className="fas fa-image fa-lg pointer"
-                            onClick= { () => handleModalPhotos (memory) }
-                          ></i>
-                        }
-
-                        {
-                          (memory.video) && 
-                          <i 
-                            className="fas fa-video fa-lg pointer"
-                            onClick= { () => handleModalVideo (memory) }
-                            ></i>
-                        } 
-
+                    <div className='tituloYicono'>
+                        <h3 className="vertical-timeline-element-title">
+                                { memory.title }
+                        </h3>
+                        { iconsTimeline( memory, 'iconGray' ) }
                     </div>
 
-                    </VerticalTimelineElement>
+                    <p>
+                        { memory.message }
+                    </p>
 
+                    </VerticalTimelineElement>
                 ))
           }
 
@@ -120,11 +93,18 @@ export const TimelineScreen = () => {
       <ModalAddLetter/>
       <ModalShowLetter/>
       <ModalAddPhotos/>
-      <ModalShowPhotos/>     
+      <ModalShowPhotos/>   
+      {
+        (!modalAddLetterOpen && !ModalShowLetterOpen && !modalAddPhotosOpen && !ModalShowPhotosOpen) 
+        && <ButtonAddFab/>
+      }
+
 
       {
-        !activeMemory?.title && <ButtonAddFab/>
+        (!memories[0]) 
+        && <WhitoutMemories/>
       }
+
     </div>
   );
 };

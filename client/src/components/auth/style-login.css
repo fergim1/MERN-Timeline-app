@@ -3,7 +3,9 @@
     display: flex;
     justify-content: center;
     height: 100vh;
-    width: 100vw;
+    
+    /* height: 100vh;
+    width: 100vw; */
 }
 
 
@@ -23,5 +25,44 @@
 }
 .link:hover {
     /* text-decoration: none; */
-    color: #0d6efd;
+    color: #1b007b;
 }
+ 
+.pENregister {
+    font-weight: bold;
+    color: #1b007b;
+}
+
+.pENregister:hover {
+    color: #FC0071;
+}
+
+.googleButton {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+margin-top: 15px;
+}
+
+.googleButton:hover{
+    background: #FC0071;
+}
+
+
+.buttonSubmit {
+    border-radius: 5px;
+    background: #FC0071;
+    padding: 4px 20px;
+    color: #fff;
+    outline: none;
+    border: 3px solid #FC0071;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.buttonSubmit:hover {
+    transition: all 0.2s ease-in-out;
+    background: #CD0860 ;
+    border: 3px solid #CD0860;
+  }

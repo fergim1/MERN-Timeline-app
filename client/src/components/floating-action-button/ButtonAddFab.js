@@ -18,9 +18,9 @@ export const ButtonAddFab = () => {
         right: 24, 
       }
 
-    const handleClick = () => {
-        console.log('Click')
-    }
+    // const handleVideo = () => {
+    //   console.log('click')      
+    // }
 
     const handleModalLetter = () => {
       dispatch( uiOpenModalAddLetter())
@@ -59,21 +59,13 @@ export const ButtonAddFab = () => {
                 <i className="fas fa-image fa-lg"></i>
         </Action>
 
-        <Action 
+        {/* <Action 
             text="Video" 
-            onClick={handleClick}
+            onClick={ handleVideo }
             style={styleButton}
         >
                 <i className="fas fa-video fa-lg"></i>
-        </Action>
-
-
-        {/* <SomeCustomComponent 
-            text="Foobar!" 
-            onClick={handleClick}
-        >
-                <i className="fa fa-foo-bar-fa-foo" />
-        </SomeCustomComponent> */}
+        </Action> */}
 
       </Fab>
 

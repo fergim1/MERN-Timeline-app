@@ -3,8 +3,6 @@ require('dotenv').config()
 var cors = require('cors')
 const authRouter = require('./routers/authRouter');
 const memoryRouter = require('./routers/memoryRouter')
-const letterRouter = require('./routers/letterRouter')
-const photosRouter = require('./routers/photosRouter')
 
 const { dbConnection } = require('./database/config');
 
@@ -37,14 +35,6 @@ app.use('/auth', authRouter )
 
 // Obtener todas las memories
 app.use('/memory', memoryRouter )
-
-// CRUD Letter
-app.use('/letter', letterRouter )
-
-// CRUD Photos
-app.use('/photos', photosRouter )
-
-
 
 //Escuchar peticiones
 app.listen( process.env.PUERTO , ()=>{

@@ -1,12 +1,12 @@
 import React from "react";
 import Modal from "react-modal";
-import { FaTrash, FaSync, FaGripLinesVertical } from 'react-icons/fa';
+import { FaTrash, FaSync, FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import moment from 'moment'
 import {  uiCloseModalShowLetter, uiOpenModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import "./styleLetter.css";
-import { startDelete, timelineCleanActiveMemory, startUpdate } from "../../../actions/timeline";
+import { startDelete, timelineCleanActiveMemory } from "../../../actions/timeline";
 
 
 
@@ -43,11 +43,18 @@ export const ModalShowLetter = () => {
       Swal.fire({
         title: '¿ Seguro querés eliminarlo ?',
         text: "No podrás recuperar esta información!",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar!'
+        focusConfirm: false,
+        focusCancel: false,
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'buttonEliminar',
+          cancelButton: 'buttonCancelar',
+        },
+        cancelButtonColor: '#1b007b',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch( startDelete () )
@@ -65,7 +72,6 @@ export const ModalShowLetter = () => {
     }
 
     const handleUpdate = ( ) => {
-      // dispatch( startUpdate (activeMemory) )
       dispatch( uiCloseModalShowLetter () )
       dispatch (uiOpenModalAddLetter() )
     }
@@ -79,14 +85,11 @@ export const ModalShowLetter = () => {
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
-        <div className='encabezado'>          
-            <h3> Carta </h3>
-            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} aria-hidden="true"  
-            title="Cerrar" ></i>
+        <div className='encabezadoLetter'>          
+            <FaTimesCircle className="fas fa-times-circle fa-lg pointer icono" onClick= {closeModal}  aria-hidden="true" title="Cerrar"/> 
         </div>
-        <hr /> 
         <div className='letter'>
-            <div className='tituloYfecha'>
+            <div className='tituloYfechaLetter'>
               <small> { activeMemory ? moment(activeMemory?.date).format("DD - MMMM - YYYY") : ''
               } </small>
               <h3 > { activeMemory?.title} </h3> 
@@ -106,11 +109,10 @@ export const ModalShowLetter = () => {
             title="Borrar"
             onClick={ handleDelete } 
           />    
-
-          <FaGripLinesVertical/> 
+ 
 
           <FaSync
-            className='pointer'
+            className='pointer iconActualizar'
             aria-hidden="true"  
             title="Actualizar"
             onClick={ handleUpdate }

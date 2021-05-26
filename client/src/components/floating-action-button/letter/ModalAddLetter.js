@@ -9,6 +9,7 @@ import { uiCloseModalAddLetter } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
 import { startAddLetter, startUpdate, timelineCleanActiveMemory } from "../../../actions/timeline";
 import "./modalAddLetter.css";
+import Swal from "sweetalert2";
 
 
 
@@ -78,6 +79,14 @@ const handleInputChange = ( { target }) => {
 
 const handleSubmitForm = ( e ) => {
       e.preventDefault();
+      if( title.trim().length === 0 || message.trim().length  === 0 || letter.trim().length  === 0 ) {
+        return Swal.fire({
+          title: 'Falta completar algún campo',
+          text: 'El título, el mensaje y la carta son obligatorios',
+          icon: 'error'
+
+        })
+      }
 
       if (activeMemory.id) {
         dispatch ( startUpdate ( formValues ))
@@ -105,7 +114,12 @@ const handleSubmitForm = ( e ) => {
 
      
         <div className='encabezado'>
-            <h3> Agregar Carta </h3>
+          {
+            (activeMemory.id)
+            ? <h3> Actualizar carta </h3>
+            : <h3> Agregar Carta </h3>
+          }
+            
             <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr />
@@ -155,7 +169,7 @@ const handleSubmitForm = ( e ) => {
                 type="text"
                 className="form-control"
                 placeholder="Carta..."
-                rows="8"
+                rows="10"
                 name="letter"
                 value= { letter }
                 onChange= { handleInputChange }
@@ -168,8 +182,7 @@ const handleSubmitForm = ( e ) => {
             </button>
             
         </div>
-      </form>
-      
+      </form>      
 
     </Modal>
   );

@@ -10,7 +10,6 @@ import { PrivateRoute } from "./PrivateRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStorage } from "../../actions/auth";
 import { startGetMemories } from "../../actions/timeline";
-import Navbar from "../navbar";
 import { TimelineScreen } from "../timeline/TimelineScreen";
 
 
@@ -44,7 +43,6 @@ export const AppRouter = () => {
     return (
     <div>
         <Router>
-                <Navbar/>
                 
                 <Switch>
                     

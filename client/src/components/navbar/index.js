@@ -1,26 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { startLogout } from '../../actions/auth';
-import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu,
-  NavBtn,
-  NavBtnLink,
-  Title
-} from './NavbarElements';
-import { Sidebar } from './sidebar/Sidebar';
+import { NavLink } from 'react-router-dom'
+import { FaSignInAlt } from 'react-icons/fa';
+import './navbar.css'
 
 const Navbar = () => {
 
-    const { authenticated } = useSelector(state => state.auth)
+    const { authenticated, name } = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    const [clicked, setClicked] = useState(false)
 
-    const handleClicked = () => {
-        setClicked(!clicked)
-    }
 
     const handleLogout = () =>{
       dispatch( startLogout() )
@@ -28,46 +17,28 @@ const Navbar = () => {
 
   return (
     <>
-      <Nav>
-        <NavLink to='/'>
-            <Title>Timeline</Title>
-          {/* <img src={'./logo.svg'} alt='logo' /> */}
-        </NavLink>
+      <nav>
+            <h3>{name} </h3>
+        <div>
+          {
+            !authenticated 
+            &&
+              <NavLink to='/auth/register' activeStyle >
+                 Registrarse
+              </NavLink>
+          }
+        </div>
         {
-            !clicked 
-            && 
-            <Bars onClick= { handleClicked }/>
-        }
+          (authenticated)
+          &&           
+            <div> <NavLink to='/' className='button' onClick={ handleLogout }>        
+                          <FaSignInAlt className='iconLogout'/> 
+                          Salir        
+                      </NavLink> 
+            </div>
+          }
+      </nav>
 
-        <NavMenu>
-          <NavLink to='/about' activeStyle>
-            About
-          </NavLink>
-          <NavLink to='/services' activeStyle>
-            Services
-          </NavLink>
-          <NavLink to='/contact-us' activeStyle>
-            Contact Us
-          </NavLink>
-          <NavLink to='/auth/register' activeStyle>
-            Sign Up
-          </NavLink>
-        </NavMenu>
-        {
-          authenticated
-          ?  <NavBtn> <NavBtnLink to='/'onClick={ handleLogout }> Logout </NavBtnLink> </NavBtn>
-          :  <NavBtn> <NavBtnLink to='/auth/login'>Login</NavBtnLink> </NavBtn>
-        }
-      </Nav>
-        {
-            clicked 
-            && 
-            <Sidebar 
-                handleClicked={ handleClicked } 
-                authenticated={ authenticated } 
-                handleLogout={ handleLogout } 
-            />
-        }
     </>
   );
 };

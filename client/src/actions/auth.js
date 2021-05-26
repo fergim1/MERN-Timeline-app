@@ -26,8 +26,6 @@ export const startLogin = ( email, password ) => {
             localStorage.setItem('uid', body.uid );
             localStorage.setItem('name', body.name );
 
-
-
             dispatch( login({
                 uid: body.uid,
                 name: body.name
@@ -41,9 +39,10 @@ export const startLogin = ( email, password ) => {
 
 export const startRegister = ( name, email, password ) => {
     return async( dispatch ) => {
-
+        console.log('name: ' , name)
+        console.log('email: ' , email)
+        console.log('password: ' , password)
         const data  = {name, email, password }
-        console.log(data)
 
         const resp = await fetch( `${localHost}auth/register`, {
             method: 'POST',
@@ -81,35 +80,10 @@ export const loginStorage = (uid, name) =>{
     }
 
 }
-const login = ( user ) => ({
+export const login = ( user ) => ({
     type: types.authLogin,
     payload: user
 });
-
-
-// export const startChecking = () => {
-//     return async(dispatch) => {
-
-//         const resp = await fetchConToken( 'auth/renew' );
-//         const body = await resp.json();
-
-//         if( body.ok ) {
-//             localStorage.setItem('token', body.token );
-
-//             dispatch( login({
-//                 uid: body.uid,
-//                 name: body.name
-//             }) )
-//         } else {
-//             dispatch( checkingFinish() );
-//         }
-//     }
-// }
-// const checkingFinish = () => ({ type: types.authCheckingFinish });
-
-
-
-
 
 export const startLogout = () => {
     return ( dispatch ) => {

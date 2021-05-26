@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import Datetime from 'react-datetime';
 import moment from 'moment';
 import "react-datetime/css/react-datetime.css";
+import Swal from "sweetalert2";
 
 import {  uiCloseModalAddPhotos } from "../../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +30,7 @@ const initialMemory = {
   date: moment().toDate(),
   title: '',
   message: '',
-  images: null,
+  images: [],
   user: ''
 }
 
@@ -43,7 +44,7 @@ export const ModalAddPhotos = () => {
 
   const [formValues, setFormValues] = useState( initialMemory )
 
-  const { date, title, message } = formValues;
+  const { date, title, message, images } = formValues;
 
 
 const closeModal = () => {
@@ -68,6 +69,15 @@ const handleInputChange = ( { target }) => {
 
 const handleSubmitForm = ( e ) => {
       e.preventDefault(); 
+
+      if( title.trim().length === 0 || message.trim().length  === 0 || images.length  === 0 ) {
+        return Swal.fire({
+          title: 'Falta completar algún campo',
+          text: 'El título, el mensaje y las fotos, son obligatorios',
+          icon: 'error'
+
+        })
+      }
 
       dispatch( startAddPhotos ( formValues , setLoading , closeModal) )   
       setFormValues(initialMemory)      
