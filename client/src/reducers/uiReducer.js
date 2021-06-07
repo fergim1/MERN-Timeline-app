@@ -4,7 +4,8 @@ const initialState = {
     modalAddLetterOpen: false,
     ModalShowLetter: false,
     modalAddPhotos: false,
-    ModalShowPhotos: false
+    ModalShowPhotos: false,
+    modalGuest: false
 
 }
 
@@ -41,6 +42,7 @@ export const uiReducer = ( state= initialState, action ) => {
                  modalAddPhotos: true,
                  modalAddLetterOpen: false,
                  ModalShowLetter: false,
+                 modalGuest: false                 
              }
     
         case types.uiCloseModalAddPhotos:
@@ -56,11 +58,28 @@ export const uiReducer = ( state= initialState, action ) => {
                 modalAddLetterOpen: false,
                 ModalShowLetter: false,
                 modalAddPhotos: false,
+                modalGuest: false
             }
         case types.uiCloseModalShowPhotos:
             return {
                 ...state,
                 ModalShowPhotos: false,
+            }
+
+        case types.uiOpenModalGuest:
+            return {
+                ...state,
+                modalGuest: true,
+                modalAddLetterOpen: false,
+                ModalShowLetter: false,
+                modalAddPhotos: false,
+                ModalShowPhotos: false,
+            }
+
+        case types.uiCloseModalGuest:
+            return {
+                ...state,
+                modalGuest: false,
             }
 
         default:

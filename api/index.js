@@ -3,6 +3,7 @@ require('dotenv').config()
 var cors = require('cors')
 const authRouter = require('./routers/authRouter');
 const memoryRouter = require('./routers/memoryRouter')
+const guestRouter = require('./routers/guestRouter')
 
 const { dbConnection } = require('./database/config');
 
@@ -16,25 +17,32 @@ const app = express();
 dbConnection();
 
 // CORS 
-var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 
-  }
-app.use(cors(corsOptions))
+    var corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200 
+      }
+    app.use(cors(corsOptions))
 
 // Directorio púbico
-app.use( express.static('public'))
+    app.use( express.static('public'))
 
-// Lectura y parseo del body
-app.use( express.json() );
+// Lectura y parseo del body 
+    app.use( express.json() );  
 
 
 //RUTAS 
-// Autenticación
-app.use('/auth', authRouter )
+    // Autenticación
+    app.use('/auth', authRouter )
 
-// Obtener todas las memories
-app.use('/memory', memoryRouter )
+    // Memories
+    app.use('/memory', memoryRouter )
+    
+    // Guest
+    app.use('/guest', guestRouter )
+
+    
+
+
 
 //Escuchar peticiones
 app.listen( process.env.PUERTO , ()=>{

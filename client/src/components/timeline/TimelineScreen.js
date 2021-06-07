@@ -16,6 +16,7 @@ import Navbar from "../navbar";
 import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css';
 import { WhitoutMemories } from "../ui/whitout-memories/WhitoutMemories";
+import { ModalGuest } from "../floating-action-button/guest/ModalGuest";
 
 
 
@@ -24,7 +25,14 @@ export const TimelineScreen = () => {
 
     const dispatch = useDispatch()
     const { memories } = useSelector(state => state.timeline)
-    const { modalAddLetterOpen, ModalShowLetter:ModalShowLetterOpen, modalAddPhotos:modalAddPhotosOpen, ModalShowPhotos:ModalShowPhotosOpen } = useSelector(state => state.ui)
+    const { type } = useSelector(state => state.auth)
+
+    const { modalAddLetterOpen, 
+            ModalShowLetter:ModalShowLetterOpen,
+            modalAddPhotos:modalAddPhotosOpen, 
+            ModalShowPhotos:ModalShowPhotosOpen ,
+            modalGuest          
+          } = useSelector(state => state.ui)
 
 
     const handleModalLetter = (memory) =>{
@@ -53,6 +61,19 @@ export const TimelineScreen = () => {
         // }
     } 
 
+    const titleTimeline = (memory) => {
+      if (memory.letter) {
+        return <h3 className='vertical-timeline-element-title pointer' onClick= { () => handleModalLetter (memory) }>
+                   { memory.title }
+               </h3> 
+      }
+      if (memory.images) {
+        return  <h3 className='vertical-timeline-element-title pointer' onClick= { () => handleModalPhotos (memory) }>
+                    { memory.title }
+                </h3>
+      }
+  } 
+
   return (
     <div>  
       <Navbar/>
@@ -74,9 +95,10 @@ export const TimelineScreen = () => {
                     >
 
                     <div className='tituloYicono'>
-                        <h3 className="vertical-timeline-element-title">
+                        { titleTimeline ( memory ) }
+                        {/* <h3 className="vertical-timeline-element-title">
                                 { memory.title }
-                        </h3>
+                        </h3> */}
                         { iconsTimeline( memory, 'iconGray' ) }
                     </div>
 
@@ -93,9 +115,17 @@ export const TimelineScreen = () => {
       <ModalAddLetter/>
       <ModalShowLetter/>
       <ModalAddPhotos/>
-      <ModalShowPhotos/>   
+      <ModalShowPhotos/>
+      <ModalGuest/>   
       {
-        (!modalAddLetterOpen && !ModalShowLetterOpen && !modalAddPhotosOpen && !ModalShowPhotosOpen) 
+        ( 
+             !modalAddLetterOpen 
+          && !ModalShowLetterOpen 
+          && !modalAddPhotosOpen 
+          && !ModalShowPhotosOpen 
+          && !modalGuest           
+          && (type === 'user') 
+        ) 
         && <ButtonAddFab/>
       }
 

@@ -23,12 +23,15 @@ export const types = {
     timelineGetMemories: '[timeline] Get Memories',
 
     timelineAddMemory: '[timeline] Add Memory',
-
     timelineAddPhotos: '[timeline] Add Photos',
-
     timelineMemoryDeleted: '[timeline] Memory Deleted',
-    timelineMemoryUpdated: '[timeline] Memory Updated'
+    timelineMemoryUpdated: '[timeline] Memory Updated',
 
+    uiOpenModalGuest: '[ui] Modal Guest Open',
+    uiCloseModalGuest: '[ui] Modal Guest Close',
 
-    
+    guestAddGuest: '[guest] Add Guest',
+    guestGetGuests: '[guest] Get Guest',
+    guestDeleted:'[guest] Guest Deleted',
+
 }

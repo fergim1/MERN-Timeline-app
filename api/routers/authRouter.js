@@ -1,12 +1,11 @@
-
-//    PATH :  host + /auth
-
 const { Router } = require('express');
 const router = Router();
 const { check } = require('express-validator')
-const { crearUsuario, loginUsuario, revalidarToken} = require('../controllers/authController');
+const { crearUsuario, loginUsuario, loginGuest } = require('../controllers/authController');
 const { validarCampos } = require('../middlewares/validar-campos');
 
+
+//    PATH :  host + /auth
 
 router.post('/register', 
 [
@@ -25,12 +24,13 @@ router.post('/login',
 ],
  loginUsuario  )
 
-// router.get ('/revalidartoken', revalidarToken  )
 
-// router.delete ('/:id',  )
-
-// router.put ('/:id',  )
-
+ router.post('/guest', 
+[
+    check( 'email' , 'El email es obligatorio y debe ser un email válido').isEmail(),
+    validarCampos
+],
+ loginGuest )
 
 
 module.exports = router

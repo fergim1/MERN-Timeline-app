@@ -8,7 +8,7 @@ import { PublicRoutes } from './PublicRoutes'
 import { AuthRouter } from "./AuthRouter";
 import { PrivateRoute } from "./PrivateRoutes";
 import { useDispatch, useSelector } from "react-redux";
-import { loginStorage } from "../../actions/auth";
+import { loginStorage, loginGuestStorage} from "../../actions/auth";
 import { startGetMemories } from "../../actions/timeline";
 import { TimelineScreen } from "../timeline/TimelineScreen";
 
@@ -23,6 +23,13 @@ export const AppRouter = () => {
     useEffect(() => {
         const uid = localStorage.getItem('uid')
         const name = localStorage.getItem('name')
+        const guestId = localStorage.getItem('guestId')
+        const guestName = localStorage.getItem('guestName')
+
+        if (guestId) {
+           dispatch (loginGuestStorage (uid, name, guestId, guestName))
+           dispatch( startGetMemories ( uid ))
+        }
 
         if( uid ) {
             dispatch( loginStorage ( uid, name ))

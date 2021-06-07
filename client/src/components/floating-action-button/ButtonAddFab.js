@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
-import { uiOpenModalAddLetter, uiOpenModalAddPhotos } from "../../actions/ui";
+import { uiOpenModalAddLetter, uiOpenModalAddPhotos, uiOpenModalGuest } from "../../actions/ui";
 
 
 export const ButtonAddFab = () => {
@@ -18,9 +18,9 @@ export const ButtonAddFab = () => {
         right: 24, 
       }
 
-    // const handleVideo = () => {
-    //   console.log('click')      
-    // }
+    const handleGuest = () => {
+      dispatch( uiOpenModalGuest())     
+    }
 
     const handleModalLetter = () => {
       dispatch( uiOpenModalAddLetter())
@@ -59,13 +59,13 @@ export const ButtonAddFab = () => {
                 <i className="fas fa-image fa-lg"></i>
         </Action>
 
-        {/* <Action 
-            text="Video" 
-            onClick={ handleVideo }
+        <Action 
+            text="Invitado" 
+            onClick={ handleGuest }
             style={styleButton}
         >
-                <i className="fas fa-video fa-lg"></i>
-        </Action> */}
+                <i className="fas fa-user-plus fa-lg"></i>
+        </Action>
 
       </Fab>
 

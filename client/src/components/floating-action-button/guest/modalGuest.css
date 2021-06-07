@@ -1,0 +1,123 @@
+/* Modal */
+.ReactModalPortal > div{
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: opacity .2s ease-in-out;
+    z-index: 999;
+}
+
+.modal-fondo {
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.modal {
+    background: white;
+    border-radius: 5px;
+    color: rgb(51, 51, 51);
+    display: inline;
+    max-height: 620px;
+    max-width: 900px;
+    outline: none;
+    padding: 10px;
+    z-index: 999999;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.encabezado  {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.encabezado i{
+    color: rgb(194, 194, 194);
+    margin-right: 5px;
+}
+
+.encabezado h3{
+    margin-left: 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.btn {
+    width: 100%;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
+.divTable {
+    height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+
+}
+
+
+.divAddGuest {
+    margin-top: 20px;
+    padding: 0px 250px;
+}
+
+.icon-delete {
+    color: rgb(194, 194, 194);
+}
+
+
+@media screen and (max-width:450px) {
+    .modal {
+      max-height: 860px;
+      border-radius: 0;
+    }
+    .divAddGuest {
+        margin-top: 30px;
+        padding: 0px 40px;
+    }
+    
+  } 
+
+
+/* Button of Swal */
+.buttonEliminar {
+    border-radius: 5px;
+    background: #FC0071;
+    padding: 4px 20px;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+  

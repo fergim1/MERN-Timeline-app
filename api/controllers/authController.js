@@ -2,6 +2,7 @@ const { response } = require('express')
 const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario')
 const { generarJWT } = require('../helpers/jwt');
+const Guest = require('../models/Guest');
 
 const crearUsuario = async (req, res=response) =>{
 
@@ -79,16 +80,39 @@ const loginUsuario = async ( req, res=response ) =>{
             })    
 }
 
-// const revalidarToken = (req, res=response) =>{
-//     res.json({
-//         ok: true,
-//         msg: 'Token Revalidado',
-//     })
-// }
+
+const loginGuest = async ( req, res=response ) =>{
+
+    const { email } = req.body;
+
+    let guest = await Guest.findOne({ email });
+
+    if ( !guest ) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'No existe ningún invitado con ese email'
+        });
+    }
+
+    const idUser = guest.user
+    let usuario = await Usuario.findById( idUser ).exec() 
+
+// Generar JWT
+    const token = await generarJWT( usuario.id, usuario.name );
+
+    res.status(201).json({
+        ok: true,
+        uid: usuario.id,
+        name: usuario.name,
+        guestName: guest.name,
+        guestId: guest._id,
+        token
+    })    
+}
 
 
 module.exports = {
     crearUsuario,
     loginUsuario,
-    // revalidarToken
+    loginGuest
 }

@@ -25,10 +25,12 @@ export const startLogin = ( email, password ) => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('uid', body.uid );
             localStorage.setItem('name', body.name );
+            localStorage.setItem('type', 'user')
 
             dispatch( login({
                 uid: body.uid,
-                name: body.name
+                name: body.name,
+                type: 'user'
             }) )
         } else {
             Swal.fire('Error', body.msg, 'error');
@@ -75,11 +77,13 @@ export const loginStorage = (uid, name) =>{
     return (dispatch) =>{
         dispatch( login({
             uid,
-            name
+            name,
+            type: 'user'
         }) )
     }
 
 }
+
 export const login = ( user ) => ({
     type: types.authLogin,
     payload: user
@@ -94,3 +98,57 @@ export const startLogout = () => {
 }
 
 const logout = () => ({ type: types.authLogout })
+
+
+export const startGuestLogin = ( email ) => {
+  
+    const data = { email }
+
+    return async( dispatch ) => {
+
+        const resp = await fetch( `${localHost}auth/guest`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify( data )
+        });
+
+        const body = await resp.json();
+
+        if( body.ok ) {
+            localStorage.setItem('token', body.token );
+            localStorage.setItem('uid', body.uid );
+            localStorage.setItem('name', body.name );
+            localStorage.setItem('type', 'guest')
+            localStorage.setItem('guestName', body.guestName)
+            localStorage.setItem('guestId', body.guestId)
+
+            dispatch( login({
+                uid: body.uid,
+                name: body.name,
+                type: 'guest',
+                guestName: body.guestName,
+                guestId: body.guestId,
+            }) )
+        } else {
+            Swal.fire('Error', body.msg, 'error');
+        }
+
+    }
+
+
+}
+
+export const loginGuestStorage = (uid, name, guestId, guestName)=>{
+    return (dispatch) =>{
+        dispatch( login({
+            uid,
+            name,
+            type: 'guest',
+            guestName: guestName,
+            guestId: guestId,
+        }) )
+    }
+
+}

@@ -30,6 +30,8 @@ export const ModalShowLetter = () => {
   const dispatch = useDispatch()
 
   const { activeMemory } = useSelector(state => state.timeline)
+  const { type } = useSelector(state => state.auth)
+
 
   const { ModalShowLetter } = useSelector(state => state.ui)
 
@@ -59,12 +61,17 @@ export const ModalShowLetter = () => {
         if (result.isConfirmed) {
           dispatch( startDelete () )
           dispatch( uiCloseModalShowLetter () )
-       
-          Swal.fire(
-            'Eliminado!',
-            'Tu carta fue eliminada!.',
-            'success'
-          )
+          Swal.fire({
+            title: 'Eliminada!',
+            text: 'Tu carta fue eliminada!.',
+            icon: 'success',
+            focusConfirm: false,
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'buttonEliminar',
+            },
+            timer: 3000                     
+         })
         }
       })
 
@@ -102,23 +109,26 @@ export const ModalShowLetter = () => {
             </p>    
      
         </div>
-        <div className='borraryactualizar'>
-          <FaTrash
-            className='pointer'
-            aria-hidden="true"  
-            title="Borrar"
-            onClick={ handleDelete } 
-          />    
- 
+        {
+         (type === 'user') 
+         && 
+            <div className='borraryactualizar'>
+              <FaTrash
+                className='pointer'
+                aria-hidden="true"  
+                title="Borrar"
+                onClick={ handleDelete } 
+              />     
 
-          <FaSync
-            className='pointer iconActualizar'
-            aria-hidden="true"  
-            title="Actualizar"
-            onClick={ handleUpdate }
-          />
+              <FaSync
+                className='pointer iconActualizar'
+                aria-hidden="true"  
+                title="Actualizar"
+                onClick={ handleUpdate }
+              />
+            </div>
+        }
 
-        </div>
 
     </Modal>
   );

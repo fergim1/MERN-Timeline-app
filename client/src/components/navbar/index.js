@@ -7,7 +7,7 @@ import './navbar.css'
 
 const Navbar = () => {
 
-    const { authenticated, name } = useSelector(state => state.auth)
+    const { authenticated, type, name, guestName } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
 
@@ -18,7 +18,11 @@ const Navbar = () => {
   return (
     <>
       <nav>
-            <h3>{name} </h3>
+           {
+             (type === 'user') 
+             ?  <div> <h3> {name} </h3> </div>
+             :  <h3> Invitado: {guestName} </h3>
+           } 
         <div>
           {
             !authenticated 

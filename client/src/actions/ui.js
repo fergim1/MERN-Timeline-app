@@ -11,3 +11,8 @@ export const uiOpenModalAddPhotos = () => ({ type: types.uiOpenModalAddPhotos})
 export const uiCloseModalAddPhotos = () => ({ type: types.uiCloseModalAddPhotos})
 export const uiOpenModalShowPhotos = () => ({ type: types.uiOpenModalShowPhotos})
 export const uiCloseModalShowPhotos = () => ({ type: types.uiCloseModalShowPhotos})
+
+
+//Guest
+export const uiOpenModalGuest = () => ({ type: types.uiOpenModalGuest})
+export const uiCloseModalGuest = () => ({ type: types.uiCloseModalGuest})

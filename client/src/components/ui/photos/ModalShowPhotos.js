@@ -31,6 +31,7 @@ export const ModalShowPhotos = () => {
   const dispatch = useDispatch()
 
   const { activeMemory } = useSelector(state => state.timeline)
+  const { type } = useSelector(state => state.auth)
   const { ModalShowPhotos } = useSelector(state => state.ui)
 
     const closeModal = () => {
@@ -60,11 +61,17 @@ export const ModalShowPhotos = () => {
         if (result.isConfirmed) {
           dispatch( startDelete ( ) )
           dispatch( uiCloseModalShowPhotos () )
-          Swal.fire(
-            'Eliminado!',
-            'Tus fotos fueron eliminadas.',
-            'success'
-          )
+          Swal.fire({
+            title: 'Eliminadas!',
+            text: 'Tus fotos fueron eliminadas!.',
+            icon: 'success',
+            focusConfirm: false,
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'buttonEliminar',
+            },
+            timer: 3000                     
+         })
         }
       })
     }
@@ -95,14 +102,18 @@ export const ModalShowPhotos = () => {
             : <h4> No hay imagenes para mostrar </h4>
 
           }
-          <div className='divDelete'>
-          <FaTrash
-              className='pointer icon'
-              aria-hidden="true"  
-              title="Borrar"
-              onClick={ handleDelete } 
-            /> 
-          </div>
+          {
+             (type === 'user') 
+             && 
+                <div className='divDelete'>
+                    <FaTrash
+                        className='pointer icon'
+                        aria-hidden="true"  
+                        title="Borrar"
+                        onClick={ handleDelete } 
+                      /> 
+                </div>
+          }
 
     </Modal1>
   );
