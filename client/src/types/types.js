@@ -2,6 +2,7 @@
 export const types = {
 
     authLogin : '[auth] Login',
+    authLoginGuest: '[auth] Login Guest',
     authCheckingFinish : '[auth] Finish checking login state',
     authStartLogin : '[auth] Start Login',
     authStartRegister : '[auth] Start Register',
@@ -33,5 +34,10 @@ export const types = {
     guestAddGuest: '[guest] Add Guest',
     guestGetGuests: '[guest] Get Guest',
     guestDeleted:'[guest] Guest Deleted',
+
+    commentAdd: '[comment] Add comment',
+    commentsGet: '[comment] Get Comments',
+    commentsClean: '[comment] Clean Comments',
+    // guestDeleted:'[guest] Guest Deleted',
 
 }

@@ -4,6 +4,8 @@ var cors = require('cors')
 const authRouter = require('./routers/authRouter');
 const memoryRouter = require('./routers/memoryRouter')
 const guestRouter = require('./routers/guestRouter')
+const commentRouter = require('./routers/commentRouter')
+
 
 const { dbConnection } = require('./database/config');
 
@@ -31,18 +33,18 @@ dbConnection();
 
 
 //RUTAS 
-    // Autenticación
+
+// Autenticación
     app.use('/auth', authRouter )
 
-    // Memories
+// Memories
     app.use('/memory', memoryRouter )
     
-    // Guest
+// Guest
     app.use('/guest', guestRouter )
 
-    
-
-
+// Comment
+    app.use('/comment', commentRouter )
 
 //Escuchar peticiones
 app.listen( process.env.PUERTO , ()=>{

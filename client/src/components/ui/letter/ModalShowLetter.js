@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { FaTrash, FaSync, FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -7,6 +7,7 @@ import {  uiCloseModalShowLetter, uiOpenModalAddLetter } from "../../../actions/
 import { useDispatch, useSelector } from "react-redux";
 import "./styleLetter.css";
 import { startDelete, timelineCleanActiveMemory } from "../../../actions/timeline";
+import { Comments } from "../comments/Commets";
 
 
 
@@ -26,14 +27,15 @@ Modal.setAppElement("#root");
 
 export const ModalShowLetter = () => {
 
-
   const dispatch = useDispatch()
-
+  const [commentsOpen, setCommentsOpen] = useState(false)
   const { activeMemory } = useSelector(state => state.timeline)
   const { type } = useSelector(state => state.auth)
-
-
   const { ModalShowLetter } = useSelector(state => state.ui)
+
+//   useEffect(() => {
+//     dispatch(startGetComments(activeMemory.id))
+// }, [ ])
 
     const closeModal = () => {
     dispatch( uiCloseModalShowLetter () )
@@ -83,6 +85,11 @@ export const ModalShowLetter = () => {
       dispatch (uiOpenModalAddLetter() )
     }
 
+
+    const handleComents = () => {
+      setCommentsOpen(!commentsOpen)
+    }
+
   return (
     <Modal
       isOpen={ModalShowLetter}
@@ -109,10 +116,12 @@ export const ModalShowLetter = () => {
             </p>    
      
         </div>
+
         {
          (type === 'user') 
          && 
-            <div className='borraryactualizar'>
+            <div className='borraryactualizar'>         
+
               <FaTrash
                 className='pointer'
                 aria-hidden="true"  
@@ -126,10 +135,20 @@ export const ModalShowLetter = () => {
                 title="Actualizar"
                 onClick={ handleUpdate }
               />
+
+              <div
+                className='comment pointer'
+                 onClick={ handleComents }
+              > 
+                 <small>Ver comentarios</small>  
+              </div>
+           
             </div>
         }
-
-
+        {
+          commentsOpen 
+          && <Comments handleComents={handleComents} commentsOpen={commentsOpen}/>
+        }
     </Modal>
   );
 };

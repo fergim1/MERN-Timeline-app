@@ -75,13 +75,24 @@
     overflow: hidden;
     overflow-y: auto;
     overflow-x: auto;
-
 }
 
+.divTable thead  {
+/* position: fixed; */
+/* top: 0; */
+/* width: 100%;
+background: white; */
+}
+
+.divTable th   {
+    /* position: sticky;  */
+    /* width: 100%; */
+    /* background: white; */
+    }
 
 .divAddGuest {
-    margin-top: 20px;
-    padding: 0px 250px;
+    padding: 20px 250px;
+    border-top: 1px solid rgb(214, 214, 214);
 }
 
 .icon-delete {
@@ -95,8 +106,8 @@
       border-radius: 0;
     }
     .divAddGuest {
-        margin-top: 30px;
-        padding: 0px 40px;
+        /* margin-top: 30px; */
+        padding: 20px 40px;
     }
     
   } 

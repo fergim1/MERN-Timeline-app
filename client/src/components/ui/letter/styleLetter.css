@@ -54,7 +54,7 @@
 }
 
 .letter {
-    height: 500px;
+    height: 90%;
     flex: 1 1 auto;
     overflow-y: auto;
     font-family: 'Caveat', cursive;
@@ -100,16 +100,16 @@
 }
 
 .borraryactualizar {
-    color: rgb(194, 194, 194);
+    color: rgb(212 212 212);
     display: flex;
-    justify-content: flex-end;
-    margin-top: 50px;
-    padding-right: 20px;
+    justify-content: space-evenly;
+    border-top: 1px solid rgb(212 212 212);
+    padding-top: 12px;
 }
 
-.iconActualizar{
-  margin-left: 20px ;
-
+.comment:hover{
+  color: #1b007b;
+  font-weight: bold;
 }
 
 .buttonEliminar {

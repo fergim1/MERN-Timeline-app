@@ -26,7 +26,6 @@ export const GuestLoginScreen = () => {
         }
         dispatch( startGuestLogin( email ))
         history.push("/")
-        // console.log(formValues)
     }
 
   return (

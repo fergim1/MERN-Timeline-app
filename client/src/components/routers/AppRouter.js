@@ -23,15 +23,15 @@ export const AppRouter = () => {
     useEffect(() => {
         const uid = localStorage.getItem('uid')
         const name = localStorage.getItem('name')
+        const type = localStorage.getItem('type')
         const guestId = localStorage.getItem('guestId')
         const guestName = localStorage.getItem('guestName')
 
-        if (guestId) {
-           dispatch (loginGuestStorage (uid, name, guestId, guestName))
-           dispatch( startGetMemories ( uid ))
-        }
-
-        if( uid ) {
+        if (type ==='guest') {
+            dispatch (loginGuestStorage (uid, name, guestId, guestName))
+            dispatch( startGetMemories ( uid ))
+        } 
+        if(type==='user') {
             dispatch( loginStorage ( uid, name ))
             dispatch( startGetMemories ( uid ))
         }

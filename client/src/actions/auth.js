@@ -124,7 +124,7 @@ export const startGuestLogin = ( email ) => {
             localStorage.setItem('guestName', body.guestName)
             localStorage.setItem('guestId', body.guestId)
 
-            dispatch( login({
+            dispatch( loginGuest({
                 uid: body.uid,
                 name: body.name,
                 type: 'guest',
@@ -134,11 +134,13 @@ export const startGuestLogin = ( email ) => {
         } else {
             Swal.fire('Error', body.msg, 'error');
         }
-
     }
-
-
 }
+
+export const loginGuest = ( guest ) => ({
+    type: types.authLoginGuest,
+    payload: guest
+});
 
 export const loginGuestStorage = (uid, name, guestId, guestName)=>{
     return (dispatch) =>{

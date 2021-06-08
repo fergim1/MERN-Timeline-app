@@ -40,7 +40,7 @@ const getGuests = async (req, res=response) => {
     
     try {
         const user = req.params.userId;
-
+        console.log(user)
         const guests = await Guest.find({user}).sort({ name: 'asc'}).exec();
 
         res.json( {
