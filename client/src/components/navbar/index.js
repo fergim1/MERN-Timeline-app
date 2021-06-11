@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { startLogout } from '../../actions/auth';
 import { NavLink } from 'react-router-dom'
-import { FaSignInAlt } from 'react-icons/fa';
 import './navbar.css'
 
 const Navbar = () => {
@@ -36,7 +35,6 @@ const Navbar = () => {
           (authenticated)
           &&           
             <div> <NavLink to='/' className='button' onClick={ handleLogout }>        
-                          <FaSignInAlt className='iconLogout'/> 
                           Salir        
                       </NavLink> 
             </div>

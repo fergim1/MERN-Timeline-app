@@ -183,33 +183,27 @@ const addPhotos =  async ( req, res = response )  => {
   }
 
   const searchMemories = async ( req, res=response ) =>{
-    const user  = req.params.userID
+
+    const userId  = req.params.userId
     const search  = req.params.search
 
-    console.log('user: ', user)
-    console.log('search: ', search)
-    res.json( 'llegoooo')
+    try {
+        const memories = await Memory.find({ user: userId, title: { $regex: search, $options: "i" } }).sort({date: 'asc'}).exec();       
 
-
-    // try {
-
-    //       // Get memories by date
-    //     const memoriesEncontradas = await Memory.findOne({ user: user, title: search }).exec();;       
-
-    //     if ( memories ) {
-    //         res.json({
-    //             ok: true,
-    //             memoriesEncontradas
-    //         })
-    //     }        
-    // }     
-    // catch (error) {
-    //     console.log(error);
-    //     res.status(500).json({
-    //         ok: false,
-    //         msg: 'Por favor hable con el administrador'
-    //     })        
-    // }
+        if ( memories ) {
+            res.json({
+                ok: true,
+                memories
+            })
+        }        
+    }     
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador'
+        })        
+    }
 
 
 } 

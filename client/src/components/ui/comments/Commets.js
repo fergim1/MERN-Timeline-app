@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaTrash } from 'react-icons/fa';
 
 import moment from 'moment'
 import { useDispatch, useSelector } from "react-redux";
 import "./comments.css";
-import { startAddComment, startCleanComments, startGetComments } from "../../../actions/comment";
+import { startAddComment, startCleanComments, startDeleteComment, startGetComments } from "../../../actions/comment";
+
 
 
 
@@ -23,29 +24,12 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 
-// const initialComments = [
-//     {   
-//         message: 'Que linda carta!!',
-//         date: new Date().getTime(),
-//         memoryId: '60ac558ac4509024f09cd008',
-//         author: 'Rosita',
-//         id: 15665
-//     },
-//     {   
-//         message: 'Divinas palabras!!',
-//         date: new Date().getTime(),
-//         memoryId: '60ac558ac4509024f09cd008',
-//         author: 'Florencia',
-//         id: 156655646
-//     },
-// ]
-
-
 export const Comments = ({handleComents, commentsOpen}) => {
     
     const dispatch = useDispatch()
     const { activeMemory } = useSelector(state => state.timeline)
     const { id:memoryId } = activeMemory
+    const { type } = useSelector(state => state.auth)
     const { comments } = useSelector(state => state.comments)
     
     const [comment, setComment] = useState('')
@@ -67,7 +51,9 @@ export const Comments = ({handleComents, commentsOpen}) => {
         dispatch(startCleanComments())
     };
 
-console.log(comments)
+    const handleDelete = (commentId) => {
+        dispatch( startDeleteComment (commentId) )
+    }
 
   return (
     <Modal
@@ -90,10 +76,25 @@ console.log(comments)
             ?
                 
                 comments?.map( (comment) => (
-                        <p key={comment.id}>
-                            <b>{ comment.author } </b>{ comment.message }<br/>
-                            <small> { comment.date } </small>
-                        </p>
+                        <div 
+                            className='post-one-comment'
+                            key={comment.id}
+                        >
+                                <p 
+                                    className='post-p'
+                                >
+                                    <b>{ comment.author } </b>{ comment.message }<br/>
+                                    <small> { moment(comment.date).fromNow(true)  } </small>
+                                </p>
+                                {
+                                    type === 'user' 
+                                    &&
+                                        <FaTrash
+                                            className='post-button-delete pointer'
+                                            onClick={ () => handleDelete(comment.id)}
+                                        />
+                                }
+                        </div>
                     ))
                             
             : <p> No hay comentarios</p>
@@ -124,16 +125,6 @@ console.log(comments)
                     Publicar
                 </button>
            </form>
-       {/* <div className='div-button-close'>
-           <button 
-                onClick= {closeModal} 
-                className='button-close'
-            >
-               Cerrar
-           </button>
-       </div> */}
-
-
     </Modal>
   );
 };

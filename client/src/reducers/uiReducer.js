@@ -5,7 +5,8 @@ const initialState = {
     ModalShowLetter: false,
     modalAddPhotos: false,
     ModalShowPhotos: false,
-    modalGuest: false
+    modalGuest: false,
+    modalSearch: false
 
 }
 
@@ -82,6 +83,25 @@ export const uiReducer = ( state= initialState, action ) => {
                 modalGuest: false,
             }
 
+        case types.uiOpenModalSearch:
+            return {
+                ...state,
+                modalSearch: true,
+                modalGuest: false,
+                modalAddLetterOpen: false,
+                ModalShowLetter: false,
+                modalAddPhotos: false,
+                ModalShowPhotos: false,
+            }
+
+        case types.uiCloseModalSearch:
+            return {
+                ...state,
+                modalSearch: false,
+            }
+
+
+            
         default:
             return state
     }

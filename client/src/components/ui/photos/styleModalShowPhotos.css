@@ -51,6 +51,8 @@
     display: flex;
     align-items: center;
     justify-content:space-between;
+    border-bottom: 1px solid rgb(231 231 231);
+    margin-bottom: 15px;
 
 }
 .encabezado h3{
@@ -61,9 +63,8 @@
     cursor: pointer;
 }
 
-.fotos {
-
-    height: 500px;
+.div-photos {
+    height: 82%;
     flex: 1 1 auto;
     overflow-y: auto;
 }
@@ -85,6 +86,37 @@ margin-bottom: 0;
 .icon {
    color: rgb(194, 194, 194);
    margin-left: 15px;
+}
+
+
+.icons-user {
+    color: rgb(194, 194, 194);
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid rgb(231 231 231);
+    padding: 15px 10px 5px 10px;
+    font-size: 20px;
+}
+
+.div-comment-guest {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 5px;
+    border-top: 1px solid rgb(231 231 231);
+}
+
+.button-comment-guest {
+    color: rgb(194, 194, 194);
+    margin-right: 30px;
+    border: none;
+    background-color: transparent;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+}
+
+.button-comment-guest:hover{
+  color: #1b007b;
 }
 
 
@@ -133,4 +165,10 @@ margin-bottom: 0;
     border: 2px solid #1b007b;
     color: #1b007b;
 
+  }
+
+  @media screen and (max-width:450px){
+    .icons-user {
+        margin-top: 10x;
+    }
   }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { FaTrash, FaSync, FaTimesCircle } from 'react-icons/fa';
+import { FaTrash, FaSync, FaTimes, FaRegComment } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import moment from 'moment'
 import {  uiCloseModalShowLetter, uiOpenModalAddLetter } from "../../../actions/ui";
@@ -33,9 +33,6 @@ export const ModalShowLetter = () => {
   const { type } = useSelector(state => state.auth)
   const { ModalShowLetter } = useSelector(state => state.ui)
 
-//   useEffect(() => {
-//     dispatch(startGetComments(activeMemory.id))
-// }, [ ])
 
     const closeModal = () => {
     dispatch( uiCloseModalShowLetter () )
@@ -100,12 +97,17 @@ export const ModalShowLetter = () => {
       closeTimeoutMS={200}
     >
         <div className='encabezadoLetter'>          
-            <FaTimesCircle className="fas fa-times-circle fa-lg pointer icono" onClick= {closeModal}  aria-hidden="true" title="Cerrar"/> 
+            <FaTimes className="fas fa-times-circle fa-lg pointer icono" onClick= {closeModal}  aria-hidden="true" title="Cerrar"/> 
         </div>
         <div className='letter'>
             <div className='tituloYfechaLetter'>
-              <small> { activeMemory ? moment(activeMemory?.date).format("DD - MMMM - YYYY") : ''
-              } </small>
+              <small> 
+                { 
+                  activeMemory 
+                  ? moment(activeMemory?.date).format("DD - MMMM - YYYY") 
+                  : ''
+                } 
+              </small>
               <h3 > { activeMemory?.title} </h3> 
             </div>
             <p >
@@ -120,30 +122,43 @@ export const ModalShowLetter = () => {
         {
          (type === 'user') 
          && 
-            <div className='borraryactualizar'>         
+            <div className='icons-user'>         
 
-              <FaTrash
-                className='pointer'
-                aria-hidden="true"  
-                title="Borrar"
-                onClick={ handleDelete } 
-              />     
+                <FaTrash
+                  className='pointer'
+                  aria-hidden="true"  
+                  title="Borrar"
+                  onClick={ handleDelete } 
+                />     
 
-              <FaSync
-                className='pointer iconActualizar'
-                aria-hidden="true"  
-                title="Actualizar"
-                onClick={ handleUpdate }
-              />
+                <FaSync
+                  className='pointer'
+                  aria-hidden="true"  
+                  title="Actualizar"
+                  onClick={ handleUpdate }
+                />
 
-              <div
-                className='comment pointer'
-                 onClick={ handleComents }
-              > 
-                 <small>Ver comentarios</small>  
-              </div>
+                <FaRegComment
+                    className='pointer'
+                    aria-hidden="true"  
+                    title="Comentarios"
+                    onClick={ handleComents }
+                />
            
             </div>
+        }
+        {
+          type ==='guest' 
+          && 
+            <div className='div-comment-guest'
+            > 
+              <button
+                  className='button-comment-guest pointer'
+                  onClick={ handleComents }
+              >
+                  <FaRegComment/>
+              </button>
+          </div> 
         }
         {
           commentsOpen 

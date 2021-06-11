@@ -1,12 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
-import { uiOpenModalAddLetter, uiOpenModalAddPhotos, uiOpenModalGuest } from "../../actions/ui";
+import { startGetMemories } from "../../actions/timeline";
+import { uiOpenModalAddLetter, uiOpenModalAddPhotos, uiOpenModalGuest, uiOpenModalSearch } from "../../actions/ui";
 
 
 export const ButtonAddFab = () => {
 
+  const { uid } = useSelector(state => state.auth)
   const dispatch = useDispatch()
     
      const styleButton = {
@@ -28,6 +30,14 @@ export const ButtonAddFab = () => {
 
     const handleModalPhotos = () => {
       dispatch ( uiOpenModalAddPhotos() )
+    }
+
+    const handleSearch = () => {
+      dispatch ( uiOpenModalSearch() )
+    }
+
+    const handleShowAll = () => {
+      dispatch( startGetMemories(uid) )
     }
 
   return (
@@ -67,6 +77,24 @@ export const ButtonAddFab = () => {
                 <i className="fas fa-user-plus fa-lg"></i>
         </Action>
 
+        <Action 
+            text="Buscar" 
+            onClick={ handleSearch }
+            style={styleButton}
+        >
+                 <i className="fas fa-search fa-lg"></i>
+        </Action>
+
+        <Action 
+            text="Ver todo" 
+            onClick={ handleShowAll }
+            style={styleButton}
+        >
+                 <i class="fas fa-list-ul fa-lg"></i>
+        </Action>
+
+       
+       
       </Fab>
 
     </div>

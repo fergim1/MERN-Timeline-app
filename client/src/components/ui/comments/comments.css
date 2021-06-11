@@ -49,31 +49,37 @@
     height: 90%;
     flex: 1 1 auto;
     overflow-y: auto;
-    font-size: 24px;
- 
-    padding: 25px;
+    font-size: 24px; 
+    padding: 25px 5px 25px 10px;
 }
 .comments-wrapper h3 {
     /* color :#7A7A7A */
     text-align: center;
 }
 
-.div-button-close {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    align-items: center;
-}
-
 .post-comments {
     padding: 10px;
-    font-size: 18px;    
+    font-size: 18px; 
 }
 
 .post-comments small {
     color: rgb(204, 204, 204);
     margin-left: 10px;
+}
+.post-one-comment {
+    display: flex;
+}
+
+.post-p {
+    flex: 1;
+}
+
+.post-button-delete {
+    color: #ECECEC;
+    align-self: center;
+}
+.post-button-delete:hover {
+    color: #1b007b;
 }
 
 .post-form {

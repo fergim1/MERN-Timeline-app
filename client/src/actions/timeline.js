@@ -113,7 +113,6 @@ export const startAddPhotos = ( memory, setLoading, closeModal ) => {
 }
 
 
-
 export const startDelete = () => {
 
     return async ( dispatch, getState ) => {
@@ -176,3 +175,27 @@ const memoryUpdated = ( memories ) => ({
     type: types.timelineMemoryUpdated,
     payload: memories
 })
+
+
+export const startSearchMemories = (uid, inputSearch) => {
+    return async ( dispatch ) => {
+
+        const resp = await fetch ( `${localHost}memory/${uid}/${inputSearch}`)
+
+        const body = await resp.json();
+
+        if( body.ok ) {
+            const memories = body.memories
+            dispatch( getMemories( memories ) )
+
+        } else {
+            console.log(body.msg)
+            Swal.fire('Error', body.msg, 'error');
+        }
+
+    }
+}
+
+
+
+

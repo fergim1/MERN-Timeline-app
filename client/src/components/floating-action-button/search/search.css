@@ -1,0 +1,119 @@
+/* Modal */
+.ReactModalPortal > div{
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: opacity .2s ease-in-out;
+    z-index: 999;
+}
+
+.modal-fondo {
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.search {
+    background: #fc0071;
+    color: white;
+    display: inline;
+    height: 100vh;
+    width: 100vw;
+    z-index: 999999;
+    transition: all 0.5s ease;
+    /* padding: 0; */
+
+}
+.search-container {
+    /* background: #fc0071; */
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.div-icon-close {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.div-search-input {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.search-icon  {
+    font-size: 25px;
+}
+
+.search-input {
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    margin-right: 5px;
+    color: white;
+    font-size: 20px;
+
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: white;
+    font-size: 20px;
+  }
+
+/* .mostrar-todo {
+    color: white;
+    font-size: 18px;
+  } */
+
+.buttonSwalOk {
+        border-radius: 5px;
+        background: #FC0071;
+        padding: 4px 20px;
+        color: #fff;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        text-decoration: none;
+        margin-right: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+@media screen and (max-width:450px) {
+    /* .modal {
+
+    }
+     */
+  } 
+

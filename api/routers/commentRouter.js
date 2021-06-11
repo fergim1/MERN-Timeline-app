@@ -9,7 +9,7 @@ router.post ( '/add', addComment )
 
 router.get('/:memoryId', getComments)
 
-router.delete ( '/', deleteComment)
+router.delete ( '/:commentId', deleteComment)
 
 
 

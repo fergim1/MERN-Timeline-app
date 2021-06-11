@@ -33,8 +33,6 @@
     border-radius: 5px;
     color: rgb(51, 51, 51);
     display: inline;
-    /* max-height: 70%;
-    max-width: 50%; */
     max-height: 620px;
     max-width: 500px;
     outline: none;
@@ -99,17 +97,34 @@
     padding-right: 25%;
 }
 
-.borraryactualizar {
-    color: rgb(212 212 212);
+.icons-user {
+    color: rgb(194, 194, 194);
     display: flex;
     justify-content: space-evenly;
-    border-top: 1px solid rgb(212 212 212);
-    padding-top: 12px;
+    border-top: 1px solid rgb(231 231 231);
+    padding: 15px 10px 5px 10px;
+    font-size: 20px;
 }
 
-.comment:hover{
+.div-comment-guest {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 5px;
+    border-top: 1px solid rgb(231 231 231);
+}
+
+.button-comment-guest {
+    color: rgb(194, 194, 194);
+    margin-right: 30px;
+    border: none;
+    background-color: transparent;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+}
+
+.button-comment-guest:hover{
   color: #1b007b;
-  font-weight: bold;
 }
 
 .buttonEliminar {

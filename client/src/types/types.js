@@ -38,6 +38,9 @@ export const types = {
     commentAdd: '[comment] Add comment',
     commentsGet: '[comment] Get Comments',
     commentsClean: '[comment] Clean Comments',
-    // guestDeleted:'[guest] Guest Deleted',
+    commentDeleted:'[guest] Comment Deleted',
+
+    uiOpenModalSearch: '[ui] Modal Search Open ',
+    uiCloseModalSearch: '[ui] Modal Search Close '
 
 }

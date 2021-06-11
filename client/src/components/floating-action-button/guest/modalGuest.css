@@ -48,6 +48,7 @@
     display: flex;
     align-items: center;
     justify-content:space-between;
+    border: none;
 }
 .encabezado i{
     color: rgb(194, 194, 194);
@@ -77,22 +78,9 @@
     overflow-x: auto;
 }
 
-.divTable thead  {
-/* position: fixed; */
-/* top: 0; */
-/* width: 100%;
-background: white; */
-}
-
-.divTable th   {
-    /* position: sticky;  */
-    /* width: 100%; */
-    /* background: white; */
-    }
-
 .divAddGuest {
     padding: 20px 250px;
-    border-top: 1px solid rgb(214, 214, 214);
+    border-top: 1px solid rgb(231, 231, 231);
 }
 
 .icon-delete {
@@ -105,9 +93,11 @@ background: white; */
       max-height: 860px;
       border-radius: 0;
     }
+    .divTable {
+        height: 50%;
+    }
     .divAddGuest {
-        /* margin-top: 30px; */
-        padding: 20px 40px;
+        padding: 30px 40px;
     }
     
   } 

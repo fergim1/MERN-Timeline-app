@@ -142,9 +142,9 @@ const handleDelete = (idGuest) =>{
            
            <h3> Invitados </h3>         
            
-           <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
+           <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
        </div>
-       <hr />
+       {/* <hr /> */}
 
        <div className='divTable' >
 

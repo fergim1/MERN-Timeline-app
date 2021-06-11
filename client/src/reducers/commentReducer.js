@@ -23,17 +23,15 @@ export const commentReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 comments: []
-            }
+            }            
 
-            
-
-        // case types.guestDeleted:
-        //     return {
-        //         ...state,
-        //         guests: state.guests.filter ( 
-        //             guest => guest.id !== action.payload
-        //         )
-        //     }            
+        case types.commentDeleted:
+            return {
+                ...state,
+                comments: state.comments.filter ( 
+                    comment => comment.id !== action.payload
+                )
+            }            
 
         default:
             return state;

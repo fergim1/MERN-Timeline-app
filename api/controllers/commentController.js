@@ -3,7 +3,7 @@ const Comment = require('../models/Comment')
 
 const addComment = async (req, res=response) => {
 
-    const { message , author , memoryId, date } = req.body    
+    const { memoryId } = req.body    
 
     try {
         
@@ -28,13 +28,9 @@ const addComment = async (req, res=response) => {
 }
 
 const getComments = async (req, res=response) => {
-    // console.log('llegaaaa memoryId')
-    // console.log(req.body.id)
 
     try {
-        // const memoryId = req.body.id;
         const memoryId = req.params.memoryId;
-
 
         const comments = await Comment.find({memoryId}).sort({ date: 'asc'}).exec();
 
@@ -57,11 +53,11 @@ const getComments = async (req, res=response) => {
 
 const deleteComment = async ( req, res=response ) => {
     
-    const idComment = req.body.id
+    const commentId = req.params.commentId
     
     try {
         
-        let comment = await Comment.findById( idComment ).exec() 
+        let comment = await Comment.findById( commentId ).exec() 
         
         if ( !comment ) {
             return res.status(400).json({
@@ -70,7 +66,7 @@ const deleteComment = async ( req, res=response ) => {
             });
         }
     
-        await Comment.findOneAndDelete( { _id: idComment });
+        await Comment.findOneAndDelete( { _id: commentId });
     
         return res.json({
             ok: true,

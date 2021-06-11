@@ -17,6 +17,7 @@ import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css';
 import { WhitoutMemories } from "../ui/whitout-memories/WhitoutMemories";
 import { ModalGuest } from "../floating-action-button/guest/ModalGuest";
+import { ModalSearch } from "../floating-action-button/search/ModalSearch";
 
 
 
@@ -31,7 +32,8 @@ export const TimelineScreen = () => {
             ModalShowLetter:ModalShowLetterOpen,
             modalAddPhotos:modalAddPhotosOpen, 
             ModalShowPhotos:ModalShowPhotosOpen ,
-            modalGuest          
+            modalGuest,
+            modalSearch          
           } = useSelector(state => state.ui)
 
 
@@ -116,14 +118,16 @@ export const TimelineScreen = () => {
       <ModalShowLetter/>
       <ModalAddPhotos/>
       <ModalShowPhotos/>
-      <ModalGuest/>   
+      <ModalGuest/>
+      <ModalSearch/>   
       {
         ( 
              !modalAddLetterOpen 
           && !ModalShowLetterOpen 
           && !modalAddPhotosOpen 
           && !ModalShowPhotosOpen 
-          && !modalGuest           
+          && !modalGuest
+          && !modalSearch           
           && (type === 'user') 
         ) 
         && <ButtonAddFab/>

@@ -120,7 +120,7 @@ const handleSubmitForm = ( e ) => {
             : <h3> Agregar Carta </h3>
           }
             
-            <i className="fas fa-times-circle fa-lg pointer" onClick= {closeModal} ></i>
+            <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
         </div>
         <hr />
              
