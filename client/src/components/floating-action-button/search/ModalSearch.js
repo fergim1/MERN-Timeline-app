@@ -57,7 +57,7 @@ export const ModalSearch = () => {
     >
       <div className="search-container">
 
-            <div className='div-icon-close'>         
+            <div className='div-icon-close-search'>         
                 <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
             </div>
             

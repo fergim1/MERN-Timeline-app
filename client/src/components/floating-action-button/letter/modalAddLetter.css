@@ -33,8 +33,6 @@
     border-radius: 5px;
     color: rgb(51, 51, 51);
     display: inline;
-    /* max-height: 70%;
-    max-width: 50%; */
     max-height: 620px;
     max-width: 500px;
     outline: none;
@@ -46,18 +44,64 @@
     margin-bottom: 20px;
 }
 
-.encabezado  {
+.div-icon-close  {
     display: flex;
-    align-items: center;
-    justify-content:space-between;
+    justify-content: flex-end;
 }
-.encabezado i{
-    color: #7A7A7A;
-    margin-right: 5px;
+.div-icon-close i{
+    color: rgb(194, 194, 194);
 }
 
-.encabezado h3{
-    margin-left: 10px;
+.title-add-letter {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #7A7A7A;
+}
+
+.div-add-letter {
+    display: flex;
+    height: 80%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.form-add-letter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.input-add-letter {
+    border: none;
+    border-bottom: 2px solid rgb(194, 194, 194);;
+    background-color: transparent;
+    width: 50%;
+    margin-bottom: 20px;
+    color: #7A7A7A;
+    font-size: 20px;
+}
+.input-add-letter:focus {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+.input-add-letter:hover {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+
+.input-add-letter::placeholder {
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+}
+
+.form-control {
+    border: none !important;
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+    padding: 0;
 }
 
 .pointer {
@@ -71,3 +115,46 @@
     text-align: center;
     color: red;
 }
+
+.button-add-letter {
+    border-radius: 50px;
+    background: #FC0071;
+    margin-top: 20px;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    font-size: 18px;
+}
+  
+
+.button-add-letter:hover {
+    transition: all 0.2s ease-in-out;
+    background: #cc005c;
+    color: white;
+}
+
+@media screen and (max-width:450px) {
+
+    .div-add-letter {
+        height: 85%;
+    }
+
+    .input-add-letter {
+        width: 65%;
+        margin-bottom: 30px;
+    }
+    .input-add-letter::placeholder {
+        font-size: 18px;
+    }
+
+    .button-add-letter {
+        width: 65%;
+    }
+    
+  } 

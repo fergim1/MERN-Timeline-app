@@ -40,22 +40,18 @@
     z-index: 999999;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.encabezado  {
+.div-icon-close {
     display: flex;
-    align-items: center;
-    justify-content:space-between;
+    justify-content:flex-end;
 }
-.encabezado i{
-    color: #7A7A7A;
-    margin-right: 5px;
+.div-icon-close i {
+    color: rgb(194, 194, 194)
 }
 
-.encabezado h3{
-    margin-left: 10px;
+.title-add-photos {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #7A7A7A;
 }
 
 .pointer {
@@ -82,3 +78,114 @@
 .spinner-border {
     margin-left: 35%;
 }
+
+
+.button-agregar {
+    border-radius: 50px;
+    background: #FC0071;
+    margin-top: 30px;
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    font-size: 20px;
+}
+  
+
+.button-agregar:hover {
+    transition: all 0.2s ease-in-out;
+    background: #cc005c;
+    color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.input-add-photos {
+    border: none;
+    border-bottom: 2px solid rgb(194, 194, 194);;
+    background-color: transparent;
+    width: 60%;
+    margin-right: 5px;
+    color: rgb(194, 194, 194);;
+    font-size: 20px;
+    margin-bottom: 30px;
+   
+}
+
+.input-add-photos:focus {
+    outline: none !important;
+    border-bottom: 2px solid #FC0071;
+}
+
+.input-add-photos:hover {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+
+.icon-upload {
+   margin-right: 0px;
+}
+
+.icon-upload:hover {
+    color: #FC0071;
+}
+
+.input-add-photos::placeholder {
+    color: rgb(194, 194, 194);
+    font-size: 18px;
+}
+
+.form-control {
+    border: none !important;
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+    padding: 0;
+}
+ 
+
+.form-control :focus {
+    outline: none !important;
+    border-bottom: 2px solid #FC0071 !important;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.margin-plus {
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.text-small {
+    font-size: 15px;
+}
+
+
+.div-label {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:450px) {
+    .input-add-photos {
+        width: 90%;
+    }
+    .form-control { 
+        font-size: 18px;
+    }
+    .button-agregar {
+        width: 90%;
+    }
+  } 

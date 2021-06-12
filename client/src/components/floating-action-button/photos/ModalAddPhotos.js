@@ -89,6 +89,7 @@ const handleSubmitForm = ( e ) => {
     })
   }
 
+
   return (
     <Modal
       isOpen={modalAddPhotos}
@@ -103,70 +104,71 @@ const handleSubmitForm = ( e ) => {
         ?
         <div>
 
-        <div className='encabezado'>
-            <h3> Agregar Fotos </h3>
-            <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
-        </div>
-        <hr />
- 
+          <div className='div-icon-close'>
+              <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
+          </div> 
+              <h3 className='title-add-photos'> Cargar Fotos </h3>
              
-        <form 
-            onSubmit= { handleSubmitForm }
-      >
-        <div className="form-group">
-                <Datetime
-                    dateFormat="DD-MM-YYYY"
-                    timeFormat={false}
-                    onChange={ handleDateChange }
-                    value = { date }
+          <form 
+              onSubmit= { handleSubmitForm }
+              className='form'
+          >
+                        <Datetime
+                            dateFormat="DD-MM-YYYY"
+                            timeFormat={false}
+                            onChange={ handleDateChange }
+                            value = { date }
+                            className='input-add-photos'
+                        />
 
-                />
-        </div>
+                    <input
+                        type="text"
+                        className= 'input-add-photos '
+                        placeholder="Título"
+                        name="title"
+                        autoComplete="off"
+                        value= { title }
+                        onChange= { handleInputChange }
+                    />
 
+                    <textarea
+                        type="text"
+                        className="input-add-photos "
+                        placeholder="Mensaje"
+                        rows="3"
+                        name="message"
+                        value= { message }
+                        onChange= { handleInputChange }
+                    ></textarea>
+              
+                    <label
+                            htmlFor='upload-files'
+                            className= 'input-add-photos margin-plus'                           
+                        >
+                          <div className='div-label'>
+                            {
+                              formValues.images.length === 0 
+                              ? 'Subir fotos'
+                              : 'Cantidad: ' + formValues.images.length
+                            }
+                          
+                            <i className="fas fa-cloud-upload-alt fa-lg icon-upload"></i>
+                          </div>
+                    </label>  
 
-        <div className="form-group">
-            <input
-                type="text"
-                className= 'form-control'
-                placeholder="Título"
-                name="title"
-                autoComplete="off"
-                value= { title }
-                onChange= { handleInputChange }
-            />
+                    <input
+                        type="file"
+                        id='upload-files'
+                        multiple
+                        className= 'input-add-photos margin-plus upload-files '
+                        onChange={ (e) => subirArchivos (e.target.files)}
+                    />
 
-        </div>
-
-        <div className="form-group">
-            <textarea
-                type="text"
-                className="form-control"
-                placeholder="Mensaje.."
-                rows="3"
-                name="message"
-                value= { message }
-                onChange= { handleInputChange }
-            ></textarea>
-        </div>
-
-        <div className="form-group">
-            <input
-                type="file"
-                multiple
-                className= 'form-control'
-                onChange={ (e) => subirArchivos (e.target.files)}
-            />
-
-
-        </div>
-
-        <div className='form-group'>
-            <button type="submit" className="btn btn-primary btn-lg ">
-            Guardar 
-            </button>
-            
-        </div>
-      </form>
+                    <button type="submit" className="button-agregar">
+                        Subir 
+                    </button>
+                    
+          </form>
         </div>
 
         :

@@ -138,12 +138,10 @@ const handleDelete = (idGuest) =>{
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
-        <div className='encabezado'>         
-           
-           <h3> Invitados </h3>         
-           
+        <div className='div-icon-close'>      
            <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
        </div>
+           <h3 className='title-guest'> Invitados </h3>         
        {/* <hr /> */}
 
        <div className='divTable' >
@@ -186,50 +184,51 @@ const handleDelete = (idGuest) =>{
 
                   <form 
                       onSubmit= { handleSubmitForm }
+                      className='form-guest'
                 >
 
-                  <div className="form-group">
+                  {/* <div className="form-group"> */}
                       <input
                           type="text"
-                          className= 'form-control'
-                          placeholder="Name"
+                          className= 'input-guest'
+                          placeholder="Nombre"
                           name="name"
                           autoComplete="off"
                           value= { name }
                           onChange= { handleInputChange }
                       />
-                  </div>
+                  {/* </div> */}
 
-                  <div className="form-group">
+                  {/* <div className="form-group"> */}
                       <input
                           type="email"
-                          className= 'form-control'
+                          className= 'input-guest'
                           placeholder="Email"
                           name="email"
                           autoComplete="off"
                           value= { email }
                           onChange= { handleInputChange }
                       />
-                  </div>
+                  {/* </div> */}
 
-                  <div className="form-group">
+                  {/* <div className="form-group"> */}
                       <input
                           type="email"
-                          className= 'form-control'
+                          className= 'input-guest'
                           placeholder="Confirmar email"
                           name="email2"
                           autoComplete="off"
                           value= { email2 }
                           onChange= { handleInputChange }
                       />
-                  </div>
+                  {/* </div> */}
 
-                  <div className='form-group'>
-                      <button type="submit" className="btn btn-primary btn-lg">
-                      Agregar invitado
+                  {/* <div className='form-group'> */}
+                      <button type="submit" className="button-agregar-invitado">
+                         Agregar invitado
                       </button>
                       
-                  </div>
+                  {/* </div> */}
                 </form>  
                 
        </div>

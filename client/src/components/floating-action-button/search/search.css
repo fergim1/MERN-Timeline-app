@@ -36,18 +36,15 @@
     width: 100vw;
     z-index: 999999;
     transition: all 0.5s ease;
-    /* padding: 0; */
 
 }
-.search-container {
-    /* background: #fc0071; */
-}
+
 
 .pointer {
     cursor: pointer;
 }
 
-.div-icon-close {
+.div-icon-close-search {
     display: flex;
     justify-content: flex-end;
     color: white;
@@ -61,8 +58,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* display: flex;
-    flex-direction: column; */
 }
 
 .search-icon  {
@@ -88,10 +83,6 @@
     font-size: 20px;
   }
 
-/* .mostrar-todo {
-    color: white;
-    font-size: 18px;
-  } */
 
 .buttonSwalOk {
         border-radius: 5px;

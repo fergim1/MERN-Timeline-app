@@ -90,7 +90,7 @@ export const ButtonAddFab = () => {
             onClick={ handleShowAll }
             style={styleButton}
         >
-                 <i class="fas fa-list-ul fa-lg"></i>
+                 <i className="fas fa-list-ul fa-lg"></i>
         </Action>
 
        

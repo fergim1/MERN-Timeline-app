@@ -40,23 +40,19 @@
     z-index: 999999;
 }
 
-.form-group {
-    margin-bottom: 12px;
-}
-
-.encabezado  {
+.div-icon-close  {
     display: flex;
-    align-items: center;
-    justify-content:space-between;
-    border: none;
+    justify-content: flex-end;
 }
-.encabezado i{
+.div-icon-close i{
     color: rgb(194, 194, 194);
     margin-right: 5px;
 }
 
-.encabezado h3{
-    margin-left: 10px;
+.title-guest{
+   text-align: center;
+   margin-bottom: 20px;
+   color: #7A7A7A;
 }
 
 .pointer {
@@ -72,35 +68,30 @@
 }
 
 .divTable {
-    height: 300px;
+    height: 50%;
     overflow: hidden;
     overflow-y: auto;
     overflow-x: auto;
 }
 
 .divAddGuest {
-    padding: 20px 250px;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-top: 1px solid rgb(231, 231, 231);
+    padding-top: 15px;
 }
 
+.form-guest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 .icon-delete {
     color: rgb(194, 194, 194);
 }
-
-
-@media screen and (max-width:450px) {
-    .modal {
-      max-height: 860px;
-      border-radius: 0;
-    }
-    .divTable {
-        height: 50%;
-    }
-    .divAddGuest {
-        padding: 30px 40px;
-    }
-    
-  } 
 
 
 /* Button of Swal */
@@ -118,7 +109,82 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
 
+
+
+.input-guest {
+    border: none;
+    border-bottom: 2px solid rgb(194, 194, 194);;
+    background-color: transparent;
+    width: 50%;
+    margin-bottom: 10px;
+    color: rgb(194, 194, 194);;
+    font-size: 20px;
+}
+
+.input-guest:focus {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+.input-guest:hover {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+
+.input-guest::placeholder {
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+}
+
+th {
+    color: rgb(95, 95, 95)
+}
+
+td {
+    color: grey;
+}
+
+.button-agregar-invitado {
+    border-radius: 50px;
+    background: #FC0071;
+    margin-top: 20px;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; 
+    font-size: 18px;
+}
+  
+
+.button-agregar-invitado:hover {
+    transition: all 0.2s ease-in-out;
+    background: #cc005c;
+    color: white;
 }
 
   
+@media screen and (max-width:450px) {
+    .modal {
+      max-height: 860px;
+      border-radius: 0;
+    }
+    .divTable {
+        height: 53%;
+    }
+    .divAddGuest {
+        height: 35%;
+    }
+    .input-guest {
+        width: 65%;
+    }
+    .button-agregar-invitado {
+        width: 65%;
+    }
+    
+  } 

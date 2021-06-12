@@ -99,8 +99,7 @@ const handleSubmitForm = ( e ) => {
         setFormValues(initialMemory)
         closeModal()    
       }
-}
-
+}  
 
   return (
     <Modal
@@ -113,76 +112,68 @@ const handleSubmitForm = ( e ) => {
     >
 
      
-        <div className='encabezado'>
-          {
-            (activeMemory.id)
-            ? <h3> Actualizar carta </h3>
-            : <h3> Agregar Carta </h3>
-          }
-            
+        <div className='div-icon-close'>    
             <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
         </div>
-        <hr />
-             
-        <form 
-            onSubmit= { handleSubmitForm }
-      >
-        <div className="form-group">
-                <Datetime
-                    dateFormat="DD-MM-YYYY"
-                    timeFormat={false}
-                    onChange={ handleDateChange }
-                    value = { activeMemory ? moment(activeMemory.date).format("DD - MMMM - YYYY")  : date }
+          {
+            (activeMemory.id)
+            ? <h3 className='title-add-letter'> Actualizar carta </h3>
+            : <h3 className='title-add-letter'> Agregar Carta </h3>
+          }
 
+        <div className='div-add-letter'>
+            <form 
+                onSubmit= { handleSubmitForm }
+                className='form-add-letter'
+          >
+                    <Datetime
+                        dateFormat="DD-MM-YYYY"
+                        timeFormat={false}
+                        className='input-add-letter'
+                        onChange={ handleDateChange }
+                        value = { activeMemory ? moment(activeMemory.date).format("DD - MMMM - YYYY")  : date }
+                    />
+
+
+                <input
+                    type="text"
+                    className='input-add-letter'
+                    placeholder="Título"
+                    name="title"
+                    autoComplete="off"
+                    value= { title }
+                    onChange= { handleInputChange }
                 />
+
+
+                <textarea
+                    type="text"
+                    className='input-add-letter'
+                    placeholder="Mensaje"
+                    rows="2"
+                    name="message"
+                    value= { message }
+                    onChange= { handleInputChange }
+                ></textarea>
+
+                <textarea
+                    type="text"
+                    className='input-add-letter'
+                    placeholder="Carta"
+                    rows="6"
+                    name="letter"
+                    value= { letter }
+                    onChange= { handleInputChange }
+                ></textarea>
+
+                <button type="submit" className="button-add-letter">
+                Guardar 
+                </button>
+                
+          </form>      
+
         </div>
-
-
-        <div className="form-group">
-            <input
-                type="text"
-                className= 'form-control'
-                placeholder="Título"
-                name="title"
-                autoComplete="off"
-                value= { title }
-                onChange= { handleInputChange }
-            />
-
-        </div>
-
-        <div className="form-group">
-            <textarea
-                type="text"
-                className="form-control"
-                placeholder="Mensaje.."
-                rows="2"
-                name="message"
-                value= { message }
-                onChange= { handleInputChange }
-            ></textarea>
-        </div>
-
-
-        <div className="form-group">
-            <textarea
-                type="text"
-                className="form-control"
-                placeholder="Carta..."
-                rows="10"
-                name="letter"
-                value= { letter }
-                onChange= { handleInputChange }
-            ></textarea>
-        </div>
-
-        <div className='form-group'>
-            <button type="submit" className="btn btn-primary btn-lg">
-            Guardar 
-            </button>
-            
-        </div>
-      </form>      
+             
 
     </Modal>
   );
