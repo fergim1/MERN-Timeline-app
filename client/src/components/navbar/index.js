@@ -17,11 +17,11 @@ const Navbar = () => {
   return (
     <>
       <nav>
-           {
+           {/* {
              (type === 'user') 
              ?  <div> <h3> {name} </h3> </div>
              :  <h3> Invitado: {guestName} </h3>
-           } 
+           }  */}
         <div>
           {
             !authenticated 

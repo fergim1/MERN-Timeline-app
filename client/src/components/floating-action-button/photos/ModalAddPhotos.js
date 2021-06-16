@@ -165,7 +165,7 @@ const handleSubmitForm = ( e ) => {
                     />
 
                     <button type="submit" className="button-agregar">
-                        Subir 
+                        Guardar 
                     </button>
                     
           </form>

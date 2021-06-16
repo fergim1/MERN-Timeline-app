@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import GoogleLogin from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc'
+
 import { startRegister } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 import './style-login.css'
@@ -50,84 +52,82 @@ export const RegisterScreen = () => {
     }
 
   return (
-    <div className="container">
-        <div className="row justify-content-center">
+    <div className="wrapper">
+        <div className='div-up registerDivUp'>
+            <h4>
+                Registrarse
+            </h4>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320"><path fill="#ffffff" fillOpacity="1" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,208C672,235,768,245,864,240C960,235,1056,213,1152,218.7C1248,224,1344,256,1392,272L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+        <div className='div-form registerForm' >
                 <form 
-                    className="form-login"
+                    className="form"
                     onSubmit={ handleSubmit }
                     >
-                    <h4 className="d-grid gap-2 col-12 mx-auto mt-4 mb-4 text-center"> Registrarse </h4>
-
-                    <div className="d-grid gap-2 col-12 mx-auto mt-3 mb-3 ">
                     <input 
                         type="text" 
-                        className="form-control" 
-                        placeholder="Nombre*"
+                        className="input" 
+                        placeholder="&#xf007;   Nombre*"
                         name='name'
                         value={ name }
                         onChange= { handleInputChange }
                         autoComplete='off'
                     />
-                    </div>
-
-                    <div className="d-grid gap-2 col-12 mx-auto mt-3 mb-3 ">
                     <input 
                         type="email" 
-                        className="form-control" 
-                        placeholder="Email*"
+                        className="input" 
+                        placeholder="&#xf0e0;   Email*"
                         name='email'
                         value={ email }
                         onChange= { handleInputChange }
                         autoComplete='off'
                     />
-                    </div>
-                    <div className="d-grid gap-2 col-12 mx-auto mt-3 mb-3 ">
                     <input
                         type="password"
-                        className="form-control"
-                        placeholder="Contraseña*"
+                        className="input" 
+                        placeholder="&#xf084;   Contraseña*"
                         name='password'
                         value={ password }
                         onChange= { handleInputChange }
                     />
-                    </div>
 
-                    <div className="d-grid gap-2 col-12 mx-auto mt-3 mb-3 ">
                     <input
                         type="password"
-                        className="form-control"
-                        placeholder="Confirmar contraseña*"
+                        className="input" 
+                        placeholder="&#xf084;   Confirmar contraseña*"
                         name='password2'
                         value={ password2 }
                         onChange= { handleInputChange }
                     />
-                    </div>
 
-
-                    <div className="d-grid gap-2 col-12 mx-auto">
-                    <button className="buttonSubmit" type="submit">
+                    <button className="button-login-register" type="submit">
                         Registrarse
                     </button>
-                    </div>
-                    <div className='googleLogin'>
                         <GoogleLogin
                             clientId="627245880489-14hgph4vte2g2fefvoc52nk0ilvmrnnh.apps.googleusercontent.com"
-                            buttonText="Registrate con Google"
+                            render={renderProps => (
+                                <button 
+                                    onClick={renderProps.onClick} 
+                                    disabled={renderProps.disabled}
+                                    className="button-google"
+                                >
+                                    <FcGoogle
+                                        className='icon-google'
+                                    />
+                                    Registrarse
+                                </button>
+                              )}
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
                             className="form-control googleButton"
                         />
-                     </div>
-
-            <div className="d-grid gap-2 col-12 mx-auto mt-3">
                 <Link
                     to='/auth/login'
                     className='link text-center'
                 >
                  ¿ Ya tienes una cuenta ? <p className='pENregister'>iniciar sesión</p>
                 </Link>
-            </div>
                 </form>
 
         </div>

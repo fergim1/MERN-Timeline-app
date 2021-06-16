@@ -115,11 +115,7 @@ const handleDelete = (idGuest) =>{
           confirmButton: 'buttonEliminar',
         },
         timer: 3000
-
-      }
-        
-        
-        
+      }              
       )
     }
   })
@@ -142,7 +138,6 @@ const handleDelete = (idGuest) =>{
            <i className="fas fa-times fa-lg pointer" onClick= {closeModal} ></i>
        </div>
            <h3 className='title-guest'> Invitados </h3>         
-       {/* <hr /> */}
 
        <div className='divTable' >
 

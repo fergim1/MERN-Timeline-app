@@ -1,30 +1,105 @@
-.container {
+/*   ------   LOGIN AND REGISTER  ------   */
+.wrapper {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    width: 100%;
     height: 100vh;
-    
-    /* height: 100vh;
-    width: 100vw; */
+    background: white;
+}
+
+.div-up {
+    width: 100%;
+    align-items: center; 
+    background: white;
+    text-align: center;
+    height: 20%;
+}
+
+.div-up svg {
+    display: block;
+}
+
+.div-up h4 {
+    color: #FC0071;
+    font-size: 30px;
 }
 
 
-.form-login {
+.div-form {
     background-color: white;
-    box-shadow: 5px 10px 10px -6px gray;
-    border-radius: 5px;
-    padding: 20px;
-    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    border: none;
+    border-bottom: 2px solid rgb(194, 194, 194);
+    background-color: transparent;
+    width: 40%;
+    margin-bottom: 10px;
+    color: #FC0071;
+    font-size: 20px;
+    font-family: Roboto, FontAwesome, sans-serif, Helvetica;
+}
+
+.input:focus {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+.input:hover {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+
+.input::placeholder {
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+}
+
+.button-login-register {
+    border-radius: 50px;
+    background: #FC0071;
+    margin-top: 20px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; 
+    font-size: 18px;
+}  
+
+.button-login-register:hover {
+    transition: all 0.2s ease-in-out;
+    background: #cc005c;
+    color: white;
+}
+
+.white {
+    color: #fff !important;
 }
 
 .link {
     text-decoration: none;
     color: gray;
-    font-size: small;
- 
+    font-size: small; 
 }
+
 .link:hover {
-    /* text-decoration: none; */
     color: #1b007b;
 }
  
@@ -36,33 +111,169 @@
 .pENregister:hover {
     color: #FC0071;
 }
+/*   ------  END OF LOGIN AND REGISTER  ------   */
 
-.googleButton {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-margin-top: 15px;
+
+/*   ------   BUTTON GOOGLE  ------   */
+.button-google {
+border: 2px solid rgb(194, 194, 194) !important;
+border-radius: 50px !important;
+background: white !important;
+margin-top: 20px !important;
+padding: 10px !important;
+text-align: center !important;
+color: rgb(194, 194, 194) !important;
+cursor: pointer ;
+text-decoration: none !important; 
+transition: all 0.2s ease-in-out;
+width: 40%;
+margin-bottom: 20px;
 }
 
-.googleButton:hover{
-    background: #FC0071;
+.button-google:hover{
+    border: 2px solid  #FC0071 !important;
+    color: #FC0071 !important;
+    font-weight: bold;
 }
 
+.icon-google {
+    font-size: 20px;
+    margin-right: 15px;
+}
+/*   ------   END OF BUTTON GOOGLE  ------   */
 
-.buttonSubmit {
-    border-radius: 5px;
+
+
+/*   ------   GUEST  ------   */
+.wrapper-guest {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
     background: #FC0071;
-    padding: 4px 20px;
+}
+.wrapper-guest h1 {
+    color: white;
+    margin-bottom: 80px;
+}
+
+.inputGuest {
+    border: none;
+    border-bottom: 2px solid white !important;
+    background-color: transparent;
+    width: 40%;
+    margin-bottom: 10px;
+    color: white !important;
+    font-size: 20px;
+    font-family: Roboto, FontAwesome, sans-serif, Helvetica;
+}
+.inputGuest:focus {
+    outline: none;
+    border-bottom: 2px solid #1b007b !important;
+}
+.inputGuest:hover {
+    outline: none;
+    border-bottom: 2px solid #1b007b !important;
+}
+
+.inputGuest::placeholder {
+    color: white;
+    font-size: 15px;
+}
+
+.button-guest {
+    border-radius: 50px;
+    background: #1b007b;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 10px;
+    text-align: center;
     color: #fff;
     outline: none;
-    border: 3px solid #FC0071;
+    border: none;
     cursor: pointer;
-    text-decoration: none;
-
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; 
+    font-size: 18px;
+    width: 40%;
 }
 
-.buttonSubmit:hover {
+.button-guest:hover {
     transition: all 0.2s ease-in-out;
-    background: #CD0860 ;
-    border: 3px solid #CD0860;
-  }
+    background: #100047;
+    color: white;
+}
+
+.register-link-guest {
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    text-align: center;
+}
+
+.register-link-guest:hover {
+    color: #1b007b;
+}
+.link-word-register {
+    color: #1b007b;
+}
+
+.link-word-register:hover {
+    color: white;
+}
+
+/*  ------  END OF GUEST   ------    */
+
+
+@media screen and (max-width:450px) {
+
+    .wrapper {
+        background: #FC0071;
+    }
+
+    .wrapper h1 {
+        color: white;
+    }
+
+    .div-up {
+        background: #FC0071;
+    }
+    .div-up h4 {
+        color: white;
+    }
+    .loginDivUp {
+        height: 30%;
+        margin-top: 50%;
+    }
+    .loginForm {
+        height: 60%; 
+     }
+
+     .registerDivUp {
+        height: 30%;
+        margin-top: 20%;
+    }
+     .registerForm {
+         height: 70%;
+     }
+    .input {
+        width: 65%;
+    }
+
+    .button-login-register {
+        width: 65%;
+    }
+
+    .inputGuest {
+        width: 65%;
+    }
+
+    .button-guest{
+        width: 65%;
+    }
+    .button-google {
+        width: 65%;
+    }    
+  } 

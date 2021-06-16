@@ -29,41 +29,37 @@ export const GuestLoginScreen = () => {
     }
 
   return (
-    <div className="container">
-        <div className="row justify-content-center">
+    <div className="wrapper-guest">
+        <h1> Seción invitados </h1>
+               
                 <form 
-                    className="form-login"
+                    className="form"
                     onSubmit={ handleSubmit }
                 >
-                    <h4 className="d-grid gap-2 col-12 mx-auto mt-4 mb-4 text-center"> Invitado </h4>
-                    <div className="d-grid gap-2 col-12 mx-auto mt-3 mb-3 ">
                     <input 
                         type="email" 
-                        className="form-control" 
-                        placeholder="Email*"
+                        className="inputGuest" 
+                        placeholder="&#xf0e0;   Email*"
                         name='email'
                         value={ email }
                         onChange= { handleInputChange }
                     />
-                    </div>
                     
-                    <div className="d-grid gap-2 col-12 mx-auto">
-                    <button className="buttonSubmit" type="submit">
-                        Ingresar como invitado
+                    <button className="button-guest" type="submit">
+                        Ingresar 
                     </button>
-                    </div>
-                
-                <div className="d-grid gap-2 col-12 mx-auto mt-3">
-
-                <Link
-                    to='/auth/register'
-                    className='link text-center'
+                <div 
+                    className='div-bottom'
                 >
-                    ¿ Queres tener una línea de tiempo ? <p className='pENregister'>Regístrate</p>
-                </Link>
+                    <Link
+                        to='/auth/register'
+                        className='register-link-guest'
+                    >
+                        ¿ Querés tener una línea de tiempo ? <p className='link-word-register'>Regístrate</p>
+                    </Link>
+
                 </div>
                 </form>
-        </div>
     </div>
   );
 };
