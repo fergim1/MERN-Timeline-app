@@ -11,6 +11,7 @@ export const AuthRouter = () => {
             <div>
                 
                 <Switch>
+
                     <Route
                         path='/auth/login'
                         exact

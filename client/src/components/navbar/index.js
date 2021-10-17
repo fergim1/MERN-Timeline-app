@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { startLogout } from '../../actions/auth';
 import { NavLink } from 'react-router-dom'
-import './navbar.css'
+import { FaBars } from 'react-icons/fa'
+import Sidebar from '../siderbar';
+import Logo from '../home/images/blanco.png'
 
-const Navbar = () => {
+const Navbar = ( ) => {
 
-    const { authenticated, type, name, guestName } = useSelector(state => state.auth)
+    const { authenticated } = useSelector(state => state.auth)
     const dispatch = useDispatch()
+
+    const [open, setOpen] = useState(false);
+   
+    const handleOpenClose = () => {
+       setOpen(!open)
+    }
 
 
     const handleLogout = () =>{
@@ -16,29 +24,61 @@ const Navbar = () => {
 
   return (
     <>
+    { 
+      open
+        &&
+        <Sidebar handleOpenClose = { handleOpenClose }/>
+    }
       <nav>
-           {/* {
-             (type === 'user') 
-             ?  <div> <h3> {name} </h3> </div>
-             :  <h3> Invitado: {guestName} </h3>
-           }  */}
-        <div>
+            <img
+               src= { Logo }
+              alt='logo'
+              className='navbar-logo'
+            />
+          
           {
-            !authenticated 
-            &&
-              <NavLink to='/auth/register' activeStyle >
-                 Registrarse
-              </NavLink>
+            (!authenticated )
+            ?
+              (
+                <div className='navbar-links'>
+                  < FaBars 
+                      className='navbar-icon-menu'
+                      onClick= { handleOpenClose }
+                  />
+                    <NavLink
+                          to='/auth/guest'
+                          onClick= { handleOpenClose }
+                          className='navbar-navlink'
+                      >
+                          Invitado
+                  </NavLink>
+                  <NavLink
+                          to='/auth/register'
+                          onClick= { handleOpenClose }
+                          className='navbar-navlink'
+                      >
+                          Registrarse
+                  </NavLink>
+                  <NavLink
+                          to='/auth/login'
+                          onClick= { handleOpenClose }
+                          className='navbar-navlink-log-in'
+                      >
+                          Log in
+                  </NavLink>
+                </div>
+                
+              )
+            :
+              (
+                <div> 
+                  <NavLink to='/' className='navbar-button' onClick={ handleLogout }>        
+                        Salir        
+                  </NavLink> 
+                </div>
+              )
           }
-        </div>
-        {
-          (authenticated)
-          &&           
-            <div> <NavLink to='/' className='button' onClick={ handleLogout }>        
-                          Salir        
-                      </NavLink> 
-            </div>
-          }
+
       </nav>
 
     </>

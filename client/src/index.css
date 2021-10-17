@@ -1,4 +1,717 @@
 html, body {
     background-color: #ececec;
     font-family: Roboto, sans-serif, Helvetica;
+    --main-color: #3507da;
+    --second-color: #fc0071;
+}
+
+/* ------- HOME SCREEN ------- */
+.home-contenedor {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+} 
+.home-wrapper-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home-div-frase { 
+    /* border: 3px solid red; */
+    min-width: 400px;
+    text-align: center;
+    padding: 40px 50px 0px 50px;
+}
+.home-titulo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    color: #666666;
+    letter-spacing: 1.4px;
+}
+.home-div-que-es { 
+    /* border: 3px solid green */
+    max-width: 900px;
+}
+.home-text-que-es-timeline {
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    color: #9d9d9d;
+    padding: 10px 30px;
+}
+.home-text-hoy-podes-hacerlo {
+    font-weight: 500;
+    text-align: center;
+    margin-left: 15px;
+}
+.home-text-como-funciona { 
+    padding: 5px;
+    color: var(--second-color);
+    font-family: 'Nunito', sans-serif;
+    margin: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.home-div-pasos {
+    display: flex;
+    justify-content: column;
+    background: white;
+    margin-top: 30px;
+    align-items: center;
+    height: auto;   
+}
+.home-div-paso {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: 2px 3px 8px lightgrey;
+}
+.home-image-paso {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+.home-div-numero-paso {
+    display: flex;
+    align-items: center;
+}
+.home-numero-paso {
+    font-size: 35px;
+    font-weight: bold;
+    color: #666666;
+    margin-right: 10px;
+    /* background: #fc0071; */
+    color: var(--second-color);
+    border-radius: 3px;
+    padding: 5px;
+}
+.home-text-paso {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: #9d9d9d;
+}
+.home-div-video-desktop {
+    display: block;
+    height: auto;
+    width: 100%;
+    background: white;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+.home-video-titulo {
+    font-family: sans-serif;
+    font-size: 30px;
+    color: #666666;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.home-video-desktop {
+    border: 2px solid #c4c4c4;
+    border-radius: 5px;
+    box-shadow: 2px 3px 8px lightgrey;
+}
+.home-div-video-mobile {
+    display: none;
+}
+/* ---- end of HOME SCREEN ---- */
+
+
+
+/* ------- NAVBAR ------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--main-color);
+    height: 70px;
+    color: #ffffff;
+    box-shadow: 00px 3px 3px gray;
+}
+.navbar-logo {
+    width: 40px;
+    height: 50px;
+    margin-left: 40px;
+}
+.navbar-links {
+    margin-right: 100px;
+}
+.navbar-navlink {
+    font-size: 15px;
+    text-decoration: none;
+    margin-right: 20px;
+    color: white;
+    padding: 15px;
+}
+.navbar-navlink:hover {
+    color: var(--second-color);
+    border-bottom: 3px solid var(--second-color);
+    transition: all 0.2s ease-in-out;
+    padding: 25px;
+}
+.navbar-navlink-log-in {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--second-color);
+}
+.navbar-navlink-log-in:hover {
+    border: 2px solid var(--second-color);
+    background: transparent;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+.navbar-button {
+    border-radius: 50px;
+    background: #FC0071;
+    padding: 4px 20px;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-button:hover {
+    transition: all 0.2s ease-in-out;
+    background: #1b007b;
+    color: #FC0071;
+  }
+  .navbar-icon-menu {
+    display: none;
+  }
+/* ---- end of NAVBAR ---- */
+
+
+/* ------- TIMELINE ------- */
+.timeline-container {
+    background-color: #ececec;
+    width: 100%;
+    height: auto;
+}
+/* ---- end of TIMELINE ---- */
+
+
+/* ------ ANIMATION ------ */
+.animate__animated.animate__fadeIn{
+    --animate-duration: 2s;
+}
+/* ---- end of ANIMATION ---- */
+
+
+
+
+/* ------- SIDEBAR ------- */
+.sidebar-container {
+    width: 100vw;
+    background: var(--second-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    /* text-transform: uppercase; */
+    z-index: 999;
+}
+.sidebar-logo {
+    width: 45px;
+    height: 60px;
+}
+.sidebar-div-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    width: 100vw;
+}
+.sidebar-icon-close {
+    font-size: 30px;
+    margin-right: 10px;
+    color: white;
+}
+.sidebar-wrapper-links {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    /* text-transform: uppercase; */
+}
+.sidebar-link {
+    height: 80px;
+    width: 100vw;
+    text-align: center;
+    padding: 38px;
+}
+.sidebar-link:hover {
+    color: var(--main-color);
+    transition: all 0.2s ease-in-out;
+
+}
+.sidebar-navlink {
+    text-decoration: none;
+    color: white;
+}
+.sidebar-navlink-log-in {
+    text-decoration: none;
+    color: #fc0071;
+    background: #ffffff;
+    padding: 15px 45px;
+    border-radius: 17px;
+}
+.sidebar-navlink-log-in:hover {   
+}
+/* ---- end of SIDEBAR ---- */
+
+
+/*   ------   LOGIN AND REGISTER  ------   */
+.wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: white;
+}
+.div-up {
+    width: 100%;
+    align-items: center; 
+    background: white;
+    text-align: center;
+    height: 20%;
+}
+.div-up svg {
+    display: none;
+}
+.div-up h4 {
+    color: #FC0071;
+    font-size: 30px;
+}
+.div-form {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.input {
+    border: none;
+    border-bottom: 1px solid rgb(194, 194, 194);
+    background-color: transparent;
+    width: 40%;
+    margin-bottom: 20px;
+    color: #FC0071;
+    font-size: 20px;
+    font-weight: lighter;
+    font-family: Roboto, FontAwesome, sans-serif, Helvetica;
+}
+.input:focus {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+.input:hover {
+    outline: none;
+    border-bottom: 2px solid #FC0071;
+}
+.input::placeholder {
+    color: rgb(194, 194, 194);
+    font-size: 15px;
+}
+.button-login-register {
+    border-radius: 50px;
+    background: #FC0071;
+    margin-top: 20px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; 
+    font-size: 18px;
+    font-weight: lighter;
+}  
+.button-login-register:hover {
+    transition: all 0.2s ease-in-out;
+    background: #cc005c;
+    color: white;
+}
+.white {
+    color: #fff !important;
+}
+.link {
+    text-decoration: none;
+    color: gray;
+    font-size: small; 
+    font-weight: lighter;
+}
+.link:hover {
+    color: #1b007b;
+}
+.pENregister {
+    font-weight: 400;
+    color: #1b007b;
+}
+.pENregister:hover {
+    color: #FC0071;
+}
+/*   ------  END OF LOGIN AND REGISTER  ------   */
+
+
+/*   ------   BUTTON GOOGLE  ------   */
+.button-google {
+border: 1px solid rgb(194, 194, 194) !important;
+border-radius: 50px !important;
+background: white !important;
+margin-top: 20px !important;
+padding: 10px !important;
+text-align: center !important;
+color: rgb(194, 194, 194) !important;
+cursor: pointer ;
+text-decoration: none !important; 
+transition: all 0.2s ease-in-out;
+width: 40%;
+margin-bottom: 20px;
+font-weight: lighter;
+
+}
+.button-google:hover{
+    border: 2px solid  #FC0071 !important;
+    color: #FC0071 !important;
+    font-weight: bold;
+}
+.icon-google {
+    font-size: 20px;
+    margin-right: 15px;
+}
+/*   ------   END OF BUTTON GOOGLE  ------   */
+
+
+/*   ------   GUEST  ------   */
+.wrapper-guest {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: #FC0071;
+}
+.wrapper-guest h1 {
+    color: white;
+    margin-bottom: 80px;
+}
+.inputGuest {
+    border: none;
+    border-bottom: 1px solid white !important;
+    background-color: transparent;
+    width: 40%;
+    margin-bottom: 20px;
+    color: white !important;
+    font-size: 20px;
+    font-weight: lighter;
+    font-family: Roboto, FontAwesome, sans-serif, Helvetica;
+}
+.inputGuest:focus {
+    outline: none;
+    border-bottom: 2px solid #1b007b !important;
+}
+.inputGuest:hover {
+    outline: none;
+    border-bottom: 2px solid #1b007b !important;
+}
+.inputGuest::placeholder {
+    color: white;
+    font-size: 15px;
+}
+.button-guest {
+    border-radius: 50px;
+    background: #1b007b;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; 
+    font-size: 18px;
+    width: 40%;
+    font-weight: lighter;
+}
+.button-guest:hover {
+    transition: all 0.2s ease-in-out;
+    background: #100047;
+    color: white;
+}
+.register-link-guest {
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    text-align: center;
+    font-weight: lighter;
+}
+.register-link-guest:hover {
+    color: #1b007b;
+}
+.link-word-register {
+    color: #1b007b;
+    font-weight: 400;
+}
+.link-word-register:hover {
+    color: white;
+}
+/*  ------  end of GUEST   ------    */
+
+
+/* ------ FOOTER ------ */
+.footer-container {
+    background-color: #252525;
+    width: 100%;
+    height: 300px;
+}
+.footer-links-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    cursor: pointer;
+}
+.footer-link:hover {
+    color: var(--second-color);
+    transition: 0ms.3 ease-in-out;
+}
+.footer-website-rights-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto 0 auto;
+}
+.footer-website-rights {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+/* ---- end of FOOTER ---- */
+
+
+
+
+
+
+/* ------- SCREEN 1000px ------- */
+/* ------- SCREEN 1000px ------- */
+@media screen and (max-width: 1000px) {
+    .home-titulo {
+        font-size: 35px;
+    }
+    .home-text-que-es-timeline {
+        font-size: 20px;
+    }
+    .home-div-paso {
+        width: 240px;
+    }   
+}
+
+/* ------- SCREEN 768px ------- */
+/* ------- SCREEN 768px ------- */
+@media screen and (max-width: 768px) {
+
+/* ------- HOME - SCREEN 768px ------- */
+    .home-titulo {
+        font-size: 30px;
+    }
+    .home-text-que-es-timeline {
+        font-size: 18px;
+        padding: 5px 81px;
+    }
+    .home-div-paso {
+        width: 200px;
+    }
+    .home-image-paso {
+        width: 160px;
+        height: 160px
+    }
+/* ------- end of Home - Screen 768px ------- */
+
+/* ------- NAVBAR - SCREEN 768px ------- */
+    .navbar-logo {
+        width: 35px;
+        height: 45px;
+    }
+    .navbar-links {
+        margin-right: 0;
+    }
+    .navbar-icon-menu {
+        display: block;
+        font-size: 25px;
+        margin-right: 10px;
+        color: white;
+        z-index: 99999;
+    }
+    .navbar-navlink {
+        display: none;
+    }
+    .navbar-navlink-log-in {
+        display: none;
+    }
+/* ------- end of Navbar - Screen 768px ------- */
+}
+
+
+/* ------- SCREEN 450px ------- */
+/* ------- SCREEN 450px ------- */
+@media screen and (max-width: 450px) {
+/* --- HOME - SCREEN 450px --- */
+    .home-wrapper-text {
+        height: 50%;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .home-div-frase {
+        min-width: none;
+    }
+    .home-titulo {
+        font-size: 34px;
+        margin-bottom: 9px;
+    }
+    .home-text-que-es-timeline {
+        font-size: 18px;
+        padding: 5px 45px;
+    }
+    .home-button-como-funciona { 
+        font-size: 18px;
+    }
+    .home-div-pasos {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+    .home-div-paso {
+        width: 85%;
+        margin-bottom: 40px;
+    }
+    .home-image-paso {
+        width: 200px;
+        height: 200px;
+    }
+    .home-div-video-desktop {
+        display: none;
+    }
+    .home-div-video-mobile {
+        display: block;
+        height: auto;
+        width: 100%;
+        background: white;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+/* --- end of Home - Screen 450px --- */
+
+/* --- LOG IN - REGISTER - GUEST - SCREEN 450px --- */
+    .div-up svg {
+        display: block;
+    }
+    .wrapper {
+        background: #FC0071;
+    }
+
+    .wrapper h1 {
+        color: white;
+    }
+    .div-up {
+        background: #FC0071;
+    }
+    .div-up h4 {
+        color: white;
+    }
+    .loginDivUp {
+        height: 30%;
+        margin-top: 50%;
+    }
+    .loginForm {
+        height: 60%; 
+     }
+     .registerDivUp {
+        height: 30%;
+        margin-top: 20%;
+    }
+     .registerForm {
+         height: 70%;
+     }
+    .input {
+        width: 65%;
+    }
+    .button-login-register {
+        width: 65%;
+    }
+    .inputGuest {
+        width: 65%;
+    }
+    .button-guest{
+        width: 65%;
+    }
+    .button-google {
+        width: 65%;
+    }  
+/* --- end of Log In - Register - Guest - Screen 450px --- */
+  
+/* ---FOOTER SCREEN 450px */
+    .footer-website-rights-wrapper {
+        flex-direction: column;
+    }
+    .footer-website-rights {
+        margin-right: 0px;   
+        margin-bottom: 5px;
+    }
+    .footer-website-rights-div {
+        margin-bottom: 0px;
+    }
+/* --- end of Footer Screen 450px */
 }

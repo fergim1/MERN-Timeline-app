@@ -1,11 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom'
-
 import { startGuestLogin } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
-import './style-login.css'
 import Swal from "sweetalert2";
+
 
 export const GuestLoginScreen = () => {
 
@@ -25,11 +24,11 @@ export const GuestLoginScreen = () => {
             return Swal.fire('Error', 'Debes ingresar el email', 'error');
         }
         dispatch( startGuestLogin( email ))
-        history.push("/")
+        history.push("/timeline")
     }
 
-  return (
-    <div className="wrapper-guest">
+  return ( 
+    <div className="wrapper-guest animate__animated animate__fadeInLeft">
         <h1> Seción invitados </h1>
                
                 <form 

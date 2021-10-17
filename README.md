@@ -2,7 +2,7 @@
 
 ## Realizada con Mongo, Express, React-Redux y Node.
 
-App para crear una línea de tiempo en la cual podes subir fotos y cartas para tus hijo/a.
+App para crear una línea de tiempo en la cual podes subir fotos y cartas para tu hijo/a.
 Cuando sean más grandes les quedarán esos recuerdos en las fechas que sucedieron y podrán leer las cartas que le fueron escribiendo.
 También podes agregar invitados, que con su email podrán ingresar y ver la línea de tiempo sin poder modificarla ni eliminarla pero si podrán realizar comentarios.
 

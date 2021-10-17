@@ -8,7 +8,6 @@ import { startLogin } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
 
-import './style-login.css'
 
 export const LoginScreen = () => {
 
@@ -29,7 +28,7 @@ export const LoginScreen = () => {
             return Swal.fire('Error', 'Debes completar email y password', 'error');
         }
         dispatch( startLogin( email, password ))
-        history.push("/")
+        history.push("/timeline")
     }
 
     const responseGoogle = (resp) => {
@@ -37,11 +36,11 @@ export const LoginScreen = () => {
         const password = resp.googleId
 
         dispatch( startLogin( email, password ))
-        history.push("/")
+        history.push("/timeline")
     }
 
   return (
-    <div className="wrapper">
+    <div className="wrapper animate__animated animate__fadeIn">
         <div className='div-up loginDivUp'>
             <h4>
                 Bienvenidos

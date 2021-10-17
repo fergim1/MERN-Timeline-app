@@ -4,10 +4,9 @@ import { Link, useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import GoogleLogin from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc'
-
 import { startRegister } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
-import './style-login.css'
+
 
 export const RegisterScreen = () => {
 
@@ -48,11 +47,11 @@ export const RegisterScreen = () => {
             email,
             password
         ) )  
-
     }
 
   return (
-    <div className="wrapper">
+    <div className="wrapper animate__animated animate__fadeIn">
+
         <div className='div-up registerDivUp'>
             <h4>
                 Registrarse

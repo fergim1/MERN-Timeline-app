@@ -1,24 +1,22 @@
 import React from "react";
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
-import moment from 'moment';
-import { FaEnvelope, FaImage } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
-import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
-
-import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
-import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+import Navbar from "../navbar";
 import { uiOpenModalShowLetter, uiOpenModalShowPhotos } from "../../actions/ui";
 import { timelineStartActiveMemory } from "../../actions/timeline";
-import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
+import { WhitoutMemories } from "../ui/whitout-memories/WhitoutMemories";
+import { ButtonAddFab } from "../floating-action-button/ButtonAddFab";
 import { ModalShowPhotos } from '../ui/photos/ModalShowPhotos'
-import Navbar from "../navbar";
+import { ModalAddPhotos } from "../floating-action-button/photos/ModalAddPhotos";
+import { ModalShowLetter } from "../ui/letter/ModalShowLetter";
+import { ModalAddLetter } from "../floating-action-button/letter/ModalAddLetter";
+import { ModalGuest } from "../floating-action-button/guest/ModalGuest";
+import { ModalSearch } from "../floating-action-button/search/ModalSearch";
+import { FaEnvelope, FaImage } from 'react-icons/fa';
+import moment from 'moment';
 
 import "react-vertical-timeline-component/style.min.css";
 import './TimelineScreen.css';
-import { WhitoutMemories } from "../ui/whitout-memories/WhitoutMemories";
-import { ModalGuest } from "../floating-action-button/guest/ModalGuest";
-import { ModalSearch } from "../floating-action-button/search/ModalSearch";
-
 
 
 
@@ -47,10 +45,6 @@ export const TimelineScreen = () => {
       dispatch ( timelineStartActiveMemory( memory ) )
     }
 
-    // const handleModalVideo = ( memory ) => {
-    //   console.log('Click icono VIDEO')
-    // }
-
     const iconsTimeline = (memory, classIcon) => {
         if (memory.letter) {
           return <FaEnvelope className={`pointer ${classIcon}` } onClick= { () => handleModalLetter (memory) }/> 
@@ -58,9 +52,6 @@ export const TimelineScreen = () => {
         if (memory.images) {
           return <FaImage className={`pointer ${classIcon}`} onClick= { () => handleModalPhotos (memory) }/> 
         }
-        // if (memory.video) {
-        //   return <FaVideo className='pointer icon' onClick= { () => handleModalVideo (memory) }/> 
-        // }
     } 
 
     const titleTimeline = (memory) => {
@@ -77,7 +68,7 @@ export const TimelineScreen = () => {
   } 
 
   return (
-    <div>  
+    <div className='timeline-container'>  
       <Navbar/>
       <VerticalTimeline
             className='timeline'
@@ -98,9 +89,6 @@ export const TimelineScreen = () => {
 
                     <div className='tituloYicono'>
                         { titleTimeline ( memory ) }
-                        {/* <h3 className="vertical-timeline-element-title">
-                                { memory.title }
-                        </h3> */}
                         { iconsTimeline( memory, 'iconGray' ) }
                     </div>
 
@@ -132,7 +120,6 @@ export const TimelineScreen = () => {
         ) 
         && <ButtonAddFab/>
       }
-
 
       {
         (!memories[0]) 

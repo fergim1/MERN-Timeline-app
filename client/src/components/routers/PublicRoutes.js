@@ -12,7 +12,7 @@ export const PublicRoutes = ({
     <Route {...rest}     
       component={ (props) =>
                     ( isAuthenticated )
-                    ? <Redirect to="/" />   // Timeline
+                    ? <Redirect to="/timeline" />   // Timeline
                     : <Component {...props} /> // AuthRouter
                      
       }

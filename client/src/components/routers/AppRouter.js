@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     BrowserRouter as Router,
     Switch,
+    Route,
     Redirect,
 } from "react-router-dom";
 import { PublicRoutes } from './PublicRoutes'
@@ -11,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginStorage, loginGuestStorage} from "../../actions/auth";
 import { startGetMemories } from "../../actions/timeline";
 import { TimelineScreen } from "../timeline/TimelineScreen";
+import HomeScreen from "../home/HomeScreen";
 
 
 export const AppRouter = () => {
@@ -52,6 +54,11 @@ export const AppRouter = () => {
         <Router>
                 
                 <Switch>
+                    <Route
+                        path='/'
+                        exact
+                        component={ HomeScreen }
+                    />
                     
                     {/* No esta autenticado */}
                     <PublicRoutes 
@@ -64,7 +71,7 @@ export const AppRouter = () => {
                     <PrivateRoute 
                         exact
                         isAuthenticated={authenticated}
-                        path="/"
+                        path="/timeline"
                         component= { TimelineScreen }
                     />
                     
