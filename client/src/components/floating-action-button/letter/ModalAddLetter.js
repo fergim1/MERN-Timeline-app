@@ -149,7 +149,7 @@ const handleSubmitForm = ( e ) => {
                 <textarea
                     type="text"
                     className='input-add-letter'
-                    placeholder="Mensaje"
+                    placeholder="Subtítulo"
                     rows="2"
                     name="message"
                     value= { message }
